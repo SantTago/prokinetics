@@ -1,0 +1,1443 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="PROKINETICS - Componentes para Órteses e Próteses. Representante exclusiva de Becker Orthopedic, Wagner Polymertechnik e Silipos.">
+  <title>PROKINETICS Tecnologia Ortopédica</title>
+
+  <!-- Open Graph / WhatsApp / Telegram / LinkedIn -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://santtago.github.io/prokinetics/">
+  <meta property="og:title"       content="PROKINETICS Tecnologia Ortopédica">
+  <meta property="og:description" content="Componentes para Órteses e Próteses. Representante exclusiva de Becker Orthopedic, Wagner Polymertechnik e Silipos no Brasil.">
+  <meta property="og:image"       content="https://santtago.github.io/prokinetics/images/logopro.png">
+  <meta property="og:image:width"  content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type"   content="image/png">
+  <meta property="og:locale"      content="pt_BR">
+  <meta property="og:site_name"   content="PROKINETICS">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="PROKINETICS Tecnologia Ortopédica">
+  <meta name="twitter:description" content="Componentes para Órteses e Próteses. Representante exclusiva de Becker Orthopedic, Wagner Polymertechnik e Silipos no Brasil.">
+  <meta name="twitter:image"       content="https://santtago.github.io/prokinetics/images/logopro.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+  <link rel="shortcut icon" href="images/favicon.png">
+
+  <style>
+  /* ================================================================
+     VARIÁVEIS
+  ================================================================ */
+  :root {
+    --navy:      #0f1771;
+    --blue:      #48b4dd;
+    --mid:       #2C7CBF;
+    --dark:      #090e4a;
+    --white:     #ffffff;
+    --gray:      #f4f6fb;
+    --text:      #4a4a5a;
+    --shadow:    0 8px 40px rgba(15,23,113,.14);
+    --radius:    16px;
+    --ease:      cubic-bezier(.4,0,.2,1);
+    --t:         .32s;
+
+    --topbar-h:  36px;
+    --nav-h:     72px;
+    --nav-full:  calc(var(--topbar-h) + var(--nav-h));  /* 108px */
+  }
+
+  /* ================================================================
+     RESET
+  ================================================================ */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; overflow-x: hidden; }
+  body {
+    font-family: 'Open Sans', sans-serif;
+    background: #fff; color: var(--text);
+    overflow-x: hidden;
+    padding-top: var(--nav-full); /* empurra tudo para baixo das barras fixas */
+  }
+  a    { text-decoration: none; color: inherit; }
+  img  { max-width: 100%; display: block; }
+  ul   { list-style: none; }
+
+  /* ================================================================
+     LOADER
+  ================================================================ */
+  #loader {
+    position: fixed; inset: 0; z-index: 9999;
+    background: var(--dark);
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px;
+    transition: opacity .6s var(--ease), visibility .6s var(--ease);
+  }
+  #loader.hide { opacity: 0; visibility: hidden; pointer-events: none; }
+  #loader img  { height: 70px; opacity: .9; animation: logoPulse 1.4s ease infinite; }
+  @keyframes logoPulse { 0%,100%{opacity:.7;transform:scale(1)} 50%{opacity:1;transform:scale(1.04)} }
+  .loader-ring {
+    width: 44px; height: 44px;
+    border: 3px solid rgba(72,180,221,.2);
+    border-top-color: var(--blue);
+    border-radius: 50%;
+    animation: spin .8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ================================================================
+     TOPBAR  — fixo no topo
+  ================================================================ */
+  #topbar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1010;
+    height: var(--topbar-h);
+    background: var(--dark);
+    display: flex; align-items: center;
+    padding: 0 clamp(16px, 4vw, 60px);
+    gap: 20px;
+    border-bottom: 1px solid rgba(72,180,221,.12);
+    transition: transform var(--t) var(--ease);
+  }
+  #topbar.hidden { transform: translateY(-100%); }
+  #topbar span   { color: rgba(255,255,255,.65); font-size: 12px; display: flex; align-items: center; gap: 6px; }
+  #topbar i      { color: var(--blue); font-size: 11px; }
+  #topbar a      { color: var(--blue); transition: color var(--t); }
+  #topbar a:hover{ color: #fff; }
+  .topbar-sep    { color: rgba(255,255,255,.2); }
+
+  /* ================================================================
+     NAVBAR — fixo logo abaixo do topbar
+  ================================================================ */
+  #navbar {
+    position: fixed; top: var(--topbar-h); left: 0; right: 0; z-index: 1000;
+    height: var(--nav-h);
+    padding: 0 clamp(16px, 4vw, 60px);
+    display: flex; align-items: center; justify-content: space-between;
+    background: #fff;
+    backdrop-filter: blur(16px) saturate(1.4);
+    -webkit-backdrop-filter: blur(16px) saturate(1.4);
+    border-bottom: 1px solid rgba(15,23,113,.1);
+    box-shadow: 0 2px 16px rgba(15,23,113,.08);
+    transition: height var(--t) var(--ease),
+                background var(--t) var(--ease), box-shadow var(--t) var(--ease);
+  }
+  #navbar.scrolled {
+    height: 62px;
+    background: #fff;
+    box-shadow: 0 4px 24px rgba(15,23,113,.12);
+  }
+  @media (max-width: 768px) {
+    #navbar { top: 0; }
+  }
+
+  .nav-logo img {
+    height: 50px;
+    transition: height var(--t) var(--ease);
+  }
+  #navbar.scrolled .nav-logo img { height: 42px; }
+
+  /* Nav links */
+  .nav-links { display: flex; align-items: center; gap: 4px; }
+  .nav-links > a, .nav-dropdown > a {
+    color: var(--navy);
+    font-size: 13px; font-weight: 600;
+    letter-spacing: .4px; text-transform: uppercase;
+    padding: 8px 13px; border-radius: 8px;
+    position: relative;
+    transition: color var(--t), background var(--t);
+    white-space: nowrap;
+  }
+  .nav-links > a::after {
+    content: '';
+    position: absolute; bottom: 3px; left: 50%; right: 50%;
+    height: 2px; background: var(--blue); border-radius: 2px;
+    transition: left var(--t) var(--ease), right var(--t) var(--ease);
+  }
+  .nav-links > a:hover, .nav-dropdown > a:hover { color: var(--mid); background: rgba(15,23,113,.06); }
+  .nav-links > a:hover::after { left: 13px; right: 13px; }
+
+  .nav-cta {
+    background: var(--blue) !important; color: #fff !important;
+    padding: 9px 20px !important; border-radius: 50px !important;
+    box-shadow: 0 4px 18px rgba(72,180,221,.3);
+    transition: background var(--t), box-shadow var(--t), transform var(--t) !important;
+  }
+  .nav-cta::after { display: none !important; }
+  .nav-cta:hover { background: #6acce9 !important; box-shadow: 0 8px 24px rgba(72,180,221,.45); transform: translateY(-1px); }
+
+  /* Dropdown */
+  .nav-dropdown { position: relative; }
+  .nav-dropdown > a { cursor: pointer; display: flex; align-items: center; gap: 5px; }
+  .drop-icon { font-size: 10px; transition: transform var(--t); }
+  .nav-dropdown:hover .drop-icon { transform: rotate(180deg); }
+
+  .dropdown-menu {
+    position: absolute; top: calc(100% + 12px); left: 50%;
+    transform: translateX(-50%) translateY(8px);
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 20px 60px rgba(15,23,113,.18);
+    min-width: 230px;
+    opacity: 0; visibility: hidden;
+    transition: opacity var(--t), transform var(--t), visibility var(--t);
+    overflow: hidden;
+    border: 1px solid rgba(15,23,113,.07);
+  }
+  .nav-dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+  .dropdown-menu a {
+    display: flex; align-items: center; gap: 10px;
+    padding: 13px 20px;
+    color: var(--navy); font-size: 13px; font-weight: 600;
+    border-bottom: 1px solid #f0f3fa;
+    transition: background var(--t), padding-left var(--t);
+  }
+  .dropdown-menu a:last-child { border-bottom: none; }
+  .dropdown-menu a i { color: var(--blue); font-size: 10px; }
+  .dropdown-menu a:hover { background: var(--gray); padding-left: 28px; }
+
+  /* Hamburger */
+  .hamburger {
+    display: none; flex-direction: column; gap: 5px;
+    background: none; border: none; cursor: pointer; padding: 6px;
+  }
+  .hamburger span {
+    display: block; width: 25px; height: 2px;
+    background: var(--navy); border-radius: 2px;
+    transition: transform var(--t), opacity var(--t);
+  }
+  .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+  .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+
+  /* Mobile fullscreen menu */
+  .mobile-menu {
+    display: none;
+    position: fixed; top: var(--nav-full); left: 0; right: 0; bottom: 0; z-index: 990;
+    background: rgba(9,14,74,.99);
+    flex-direction: column;
+    overflow-y: auto;
+    opacity: 0; transform: translateX(100%);
+    transition: opacity var(--t), transform var(--t);
+  }
+  /* no mobile, topbar some → navbar fica em top:0, menu abre abaixo dela */
+  @media (max-width: 768px) {
+    .mobile-menu { top: var(--nav-h); }
+  }
+  .mobile-menu.visible { display: flex; }
+  .mobile-menu.open    { opacity: 1; transform: translateX(0); }
+  .mobile-menu a {
+    color: rgba(255,255,255,.8); font-size: 17px; font-weight: 600;
+    padding: 18px clamp(20px,6vw,48px);
+    border-bottom: 1px solid rgba(255,255,255,.07);
+    display: flex; align-items: center; gap: 12px;
+    transition: color var(--t), background var(--t);
+  }
+  .mobile-menu a i { color: var(--blue); width: 20px; text-align: center; }
+  .mobile-menu a:hover { color: #fff; background: rgba(72,180,221,.08); }
+  .mobile-cta { background: var(--blue) !important; color: #fff !important; margin: 20px clamp(20px,6vw,48px); border-radius: 50px !important; justify-content: center; }
+
+  /* ================================================================
+     HERO — ponta a ponta, começa no y=0
+  ================================================================ */
+  #hero {
+    position: relative;
+    width: 100%;
+    height: calc(100vh - var(--nav-full));
+    height: calc(100dvh - var(--nav-full));
+    min-height: 480px;
+    overflow: hidden;
+    padding: 0 !important; /* cancela o padding lateral do seletor genérico "section" */
+    margin: 0;
+  }
+
+  .hero-swiper { width: 100%; height: 100%; }
+
+  /* Cada slide ocupa 100% */
+  .hero-swiper .swiper-slide { position: relative; overflow: hidden; }
+
+  /* Imagem de fundo cobre TUDO de ponta a ponta */
+  .slide-bg {
+    position: absolute; inset: 0;
+    background-size: cover;
+    background-position: center center;
+    transform: scale(1.06);
+    transition: transform 9s var(--ease);
+    will-change: transform;
+  }
+  .swiper-slide-active .slide-bg { transform: scale(1); }
+
+  /* Overlay com gradiente direcional */
+  .slide-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(
+      105deg,
+      rgba(9,14,74,.92)  0%,
+      rgba(15,23,113,.78) 40%,
+      rgba(15,23,113,.35) 70%,
+      transparent        100%
+    );
+  }
+
+  /* Grade de pontos sutil */
+  .slide-dots {
+    position: absolute; inset: 0; pointer-events: none;
+    background-image: radial-gradient(rgba(72,180,221,.1) 1px, transparent 1px);
+    background-size: 36px 36px;
+  }
+
+  /* Conteúdo ocupa todo o slide sem sobreposição do nav */
+  .slide-content {
+    position: absolute; inset: 0;
+    display: flex; align-items: center;
+    padding: clamp(24px,5vh,64px) clamp(24px,6vw,80px);
+    z-index: 2;
+  }
+
+  .slide-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: clamp(24px, 4vw, 64px);
+    width: 100%;
+    max-width: 1360px;
+    margin: 0 auto;
+  }
+
+  /* ── Texto ── */
+  .slide-text { color: #fff; }
+
+  .slide-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(72,180,221,.16);
+    border: 1px solid rgba(72,180,221,.38);
+    color: var(--blue);
+    font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase;
+    padding: 7px 18px; border-radius: 30px;
+    margin-bottom: 22px;
+    opacity: 0; transform: translateY(18px);
+    transition: opacity .55s var(--ease) .1s, transform .55s var(--ease) .1s;
+  }
+  .dot-pulse { width: 6px; height: 6px; border-radius: 50%; background: var(--blue); animation: dp 2s ease infinite; }
+  @keyframes dp { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(1.7)} }
+
+  .slide-h1 {
+    font-size: clamp(1.9rem, 4.2vw, 3.8rem);
+    font-weight: 800; line-height: 1.1; letter-spacing: -.01em;
+    margin-bottom: 18px;
+    opacity: 0; transform: translateY(28px);
+    transition: opacity .65s var(--ease) .22s, transform .65s var(--ease) .22s;
+  }
+  .slide-h1 em { font-style: normal; color: var(--blue); }
+
+  .slide-desc {
+    font-size: clamp(.88rem, 1.6vw, 1.05rem);
+    color: rgba(255,255,255,.7); line-height: 1.78;
+    max-width: 510px; margin-bottom: 36px;
+    opacity: 0; transform: translateY(22px);
+    transition: opacity .65s var(--ease) .36s, transform .65s var(--ease) .36s;
+  }
+  .slide-desc strong { color: rgba(255,255,255,.95); }
+
+  .slide-btns {
+    display: flex; gap: 12px; flex-wrap: wrap;
+    opacity: 0; transform: translateY(18px);
+    transition: opacity .65s var(--ease) .5s, transform .65s var(--ease) .5s;
+  }
+
+  /* Activar animações no slide ativo */
+  .swiper-slide-active .slide-eyebrow,
+  .swiper-slide-active .slide-h1,
+  .swiper-slide-active .slide-desc,
+  .swiper-slide-active .slide-btns { opacity: 1; transform: translateY(0); }
+
+  /* Botões */
+  .btn-p {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--blue); color: #fff;
+    font-size: 13.5px; font-weight: 700; letter-spacing: .3px;
+    padding: 14px 30px; border-radius: 50px;
+    box-shadow: 0 6px 22px rgba(72,180,221,.38);
+    transition: background var(--t), transform var(--t), box-shadow var(--t);
+  }
+  .btn-p:hover { background: #67cce8; transform: translateY(-3px); box-shadow: 0 12px 32px rgba(72,180,221,.5); }
+
+  .btn-o {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,.08);
+    border: 1.5px solid rgba(255,255,255,.32);
+    color: #fff;
+    font-size: 13.5px; font-weight: 700; letter-spacing: .3px;
+    padding: 13px 28px; border-radius: 50px;
+    backdrop-filter: blur(4px);
+    transition: border-color var(--t), background var(--t), transform var(--t);
+  }
+  .btn-o:hover { border-color: var(--blue); background: rgba(72,180,221,.15); transform: translateY(-3px); }
+
+  /* ── Produto (lado direito) ── */
+  .slide-visual {
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+    min-height: 300px;
+  }
+
+  /* Anel giratório */
+  .vis-ring {
+    position: absolute;
+    width: min(420px, 90%); height: min(420px, 90%);
+    border-radius: 50%;
+    border: 1px solid rgba(72,180,221,.18);
+    animation: ringRotate 28s linear infinite;
+    pointer-events: none;
+  }
+  .vis-ring::before, .vis-ring::after {
+    content: '';
+    position: absolute; border-radius: 50%; background: var(--blue);
+  }
+  .vis-ring::before { width: 10px; height: 10px; top: -5px; left: 50%; transform: translateX(-50%); }
+  .vis-ring::after  { width: 6px;  height: 6px;  bottom: -3px; left: 50%; transform: translateX(-50%); opacity: .5; }
+  @keyframes ringRotate { to { transform: rotate(360deg); } }
+
+  .vis-ring-2 {
+    position: absolute;
+    width: min(320px, 70%); height: min(320px, 70%);
+    border-radius: 50%;
+    border: 1px dashed rgba(72,180,221,.1);
+    animation: ringRotate 18s linear infinite reverse;
+  }
+
+  /* Halo */
+  .vis-glow {
+    position: absolute;
+    width: min(340px,80%); height: min(340px,80%);
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(72,180,221,.2) 0%, transparent 68%);
+    animation: glowPulse 4s ease infinite;
+  }
+  @keyframes glowPulse { 0%,100%{transform:scale(1);opacity:.7} 50%{transform:scale(1.12);opacity:1} }
+
+  /* Imagem do produto */
+  .vis-img {
+    position: relative; z-index: 2;
+    max-width: min(440px, 90%);
+    max-height: min(420px, 50vh);
+    object-fit: contain;
+    filter: drop-shadow(0 24px 64px rgba(0,0,0,.55));
+    opacity: 0; transform: translateX(36px) scale(.96);
+    transition: opacity .85s var(--ease) .28s, transform .85s var(--ease) .28s;
+  }
+  .swiper-slide-active .vis-img { opacity: 1; transform: translateX(0) scale(1); }
+
+  /* Badge flutuante */
+  .vis-badge {
+    position: absolute; top: 8%; right: 0;
+    background: rgba(255,255,255,.96);
+    border-radius: 14px;
+    padding: 12px 18px;
+    display: flex; align-items: center; gap: 12px;
+    box-shadow: 0 8px 32px rgba(0,0,0,.2);
+    backdrop-filter: blur(8px);
+    opacity: 0; transform: translateY(-14px);
+    transition: opacity .6s var(--ease) .75s, transform .6s var(--ease) .75s;
+    z-index: 3;
+    min-width: 190px;
+  }
+  .swiper-slide-active .vis-badge { opacity: 1; transform: translateY(0); }
+  .vis-badge-icon {
+    width: 38px; height: 38px; border-radius: 10px; flex-shrink: 0;
+    background: linear-gradient(135deg, var(--navy), var(--mid));
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 17px;
+  }
+  .vis-badge strong { display: block; color: var(--navy); font-size: 12.5px; font-weight: 700; }
+  .vis-badge span   { color: #888; font-size: 11px; }
+
+  /* ── Controles Swiper ── */
+  .hero-swiper .swiper-button-prev,
+  .hero-swiper .swiper-button-next {
+    width: 50px; height: 50px;
+    background: rgba(255,255,255,.1);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,.2);
+    border-radius: 50%;
+    transition: background var(--t), border-color var(--t), transform var(--t);
+  }
+  .hero-swiper .swiper-button-prev { left: clamp(12px,3vw,40px); }
+  .hero-swiper .swiper-button-next { right: clamp(12px,3vw,40px); }
+  .hero-swiper .swiper-button-prev:hover,
+  .hero-swiper .swiper-button-next:hover {
+    background: rgba(72,180,221,.3);
+    border-color: rgba(72,180,221,.55);
+    transform: scale(1.06);
+  }
+  .hero-swiper .swiper-button-prev::after,
+  .hero-swiper .swiper-button-next::after { font-size: 15px; color: #fff; font-weight: 800; }
+
+  /* Paginação */
+  .hero-swiper .swiper-pagination { bottom: 28px; }
+  .hero-swiper .swiper-pagination-bullet {
+    width: 8px; height: 8px;
+    background: rgba(255,255,255,.35); opacity: 1;
+    transition: width var(--t), background var(--t), border-radius var(--t);
+  }
+  .hero-swiper .swiper-pagination-bullet-active {
+    background: var(--blue); width: 30px; border-radius: 4px;
+  }
+
+  /* Barra de progresso */
+  .slide-progress { position: absolute; bottom: 0; left: 0; right: 0; height: 3px; z-index: 10; background: rgba(255,255,255,.08); }
+  .slide-progress-bar { height: 100%; background: linear-gradient(90deg, var(--navy), var(--blue)); width: 0; transition: width linear; }
+
+  /* Scroll mouse */
+  .scroll-cue {
+    position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    color: rgba(255,255,255,.4); font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase;
+    z-index: 10;
+    animation: fadeIn 1s ease both 1.5s;
+  }
+  @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+  .scroll-mouse {
+    width: 22px; height: 36px;
+    border: 1.5px solid rgba(255,255,255,.25);
+    border-radius: 11px;
+    display: flex; justify-content: center; padding-top: 5px;
+  }
+  .scroll-dot { width: 3px; height: 7px; background: rgba(255,255,255,.45); border-radius: 2px; animation: scrollAnim 2s ease infinite; }
+  @keyframes scrollAnim { 0%,100%{transform:translateY(0);opacity:1} 75%{transform:translateY(10px);opacity:0} }
+
+  /* ================================================================
+     STATS BAR
+  ================================================================ */
+  #stats {
+    background: var(--navy);
+    padding: 0 clamp(20px,5vw,60px);
+  }
+  .stats-grid {
+    max-width: 1360px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(4,1fr);
+  }
+  .stat-item {
+    text-align: center; color: #fff;
+    padding: 28px 20px;
+    border-right: 1px solid rgba(255,255,255,.08);
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-number { font-size: clamp(1.8rem,3vw,2.4rem); font-weight: 800; color: var(--blue); line-height: 1; }
+  .stat-label  { font-size: 12px; color: rgba(255,255,255,.55); margin-top: 6px; letter-spacing: .5px; }
+
+  /* ================================================================
+     SECTION BASE
+  ================================================================ */
+  section { padding: clamp(60px,8vw,110px) clamp(20px,5vw,60px); }
+  .wrap   { max-width: 1360px; margin: 0 auto; }
+
+  .section-header { text-align: center; margin-bottom: clamp(40px,6vw,72px); }
+  .section-eyebrow {
+    display: inline-block;
+    color: var(--navy); font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+    margin-bottom: 12px; padding: 0 24px; position: relative;
+  }
+  .section-eyebrow::before, .section-eyebrow::after {
+    content: ''; position: absolute; top: 50%;
+    width: 28px; height: 2px; background: var(--blue);
+  }
+  .section-eyebrow::before { right: 100%; margin-right: -14px; }
+  .section-eyebrow::after  { left:  100%; margin-left:  -14px; }
+  .section-title {
+    font-size: clamp(1.7rem,3.6vw,2.6rem);
+    font-weight: 800; color: var(--navy); line-height: 1.15; margin-bottom: 14px;
+  }
+  .section-sub { font-size: .97rem; color: #888; max-width: 540px; margin: 0 auto; line-height: 1.7; }
+  .divider { width: 56px; height: 4px; border-radius: 2px; background: linear-gradient(90deg,var(--navy),var(--blue)); margin: 18px auto 0; }
+
+  /* ================================================================
+     PRODUTOS
+  ================================================================ */
+  #produtos { background: var(--gray); }
+  .products-grid {
+    display: grid; grid-template-columns: repeat(3,1fr); gap: 28px;
+  }
+  .product-card {
+    background: #fff; border-radius: 20px; overflow: hidden;
+    box-shadow: 0 4px 20px rgba(15,23,113,.07);
+    display: flex; flex-direction: column;
+    transition: transform var(--t), box-shadow var(--t);
+  }
+  .product-card:hover { transform: translateY(-8px); box-shadow: 0 22px 50px rgba(15,23,113,.15); }
+
+  .pc-img { position: relative; overflow: hidden; height: 230px; background: var(--gray); }
+  .pc-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s var(--ease); }
+  .product-card:hover .pc-img img { transform: scale(1.08); }
+  .pc-hover {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg,transparent 35%,rgba(15,23,113,.82));
+    display: flex; align-items: flex-end; justify-content: center;
+    padding-bottom: 20px;
+    opacity: 0; transition: opacity var(--t);
+  }
+  .product-card:hover .pc-hover { opacity: 1; }
+  .pc-hover a {
+    background: var(--blue); color: #fff;
+    padding: 10px 24px; border-radius: 30px;
+    font-size: 13px; font-weight: 700;
+    display: inline-flex; align-items: center; gap: 6px;
+    transition: background var(--t);
+  }
+  .pc-hover a:hover { background: #67cce8; }
+
+  .pc-body { padding: 24px 26px 28px; flex: 1; display: flex; flex-direction: column; }
+  .pc-icon {
+    width: 46px; height: 46px; border-radius: 12px;
+    background: linear-gradient(135deg,var(--navy),var(--mid));
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 14px;
+  }
+  .pc-icon i { color: #fff; font-size: 19px; }
+  .pc-body h3 { font-size: 1.08rem; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+  .pc-body p  { font-size: 13.5px; color: #888; line-height: 1.65; flex: 1; }
+  .pc-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    color: var(--navy); font-size: 13px; font-weight: 700; margin-top: 20px;
+    transition: gap var(--t), color var(--t);
+  }
+  .pc-link:hover { gap: 10px; color: var(--blue); }
+
+  /* ================================================================
+     QUEM SOMOS
+  ================================================================ */
+  #quemsomos { display: flex; padding: 0; background: #fff; }
+  .qs-visual {
+    flex: 0 0 40%;
+    background: linear-gradient(150deg, var(--dark) 0%, var(--navy) 60%, #1b4087 100%);
+    position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+    min-height: 520px;
+  }
+  .qs-visual::before {
+    content: ''; position: absolute; inset: 0;
+    background-image: radial-gradient(rgba(72,180,221,.12) 1px, transparent 1px);
+    background-size: 30px 30px;
+  }
+  .qs-visual-inner { position: relative; z-index: 1; padding: clamp(40px,6vw,72px) clamp(24px,4vw,52px); text-align: center; }
+  .qs-logo { max-height: 100px; margin: 0 auto 32px; }
+  .qs-cards { display: flex; flex-direction: column; gap: 14px; }
+  .qs-card {
+    background: rgba(255,255,255,.07); border: 1px solid rgba(72,180,221,.22);
+    border-radius: 12px; padding: 14px 20px;
+    display: flex; align-items: center; gap: 14px; text-align: left;
+    transition: background var(--t), border-color var(--t);
+  }
+  .qs-card:hover { background: rgba(72,180,221,.1); border-color: rgba(72,180,221,.4); }
+  .qs-card i    { color: var(--blue); font-size: 20px; flex-shrink: 0; }
+  .qs-card strong { display: block; color: #fff; font-size: 14px; font-weight: 700; }
+  .qs-card span   { color: rgba(255,255,255,.5); font-size: 12px; }
+
+  .qs-content {
+    flex: 1; padding: clamp(48px,7vw,90px) clamp(24px,5vw,72px);
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .qs-content .section-eyebrow { padding: 0; text-align: left; }
+  .qs-content .section-eyebrow::before { display: none; }
+  .qs-content .section-title { text-align: left; }
+  .qs-content .divider { margin: 14px 0 0; }
+  .qs-content p { font-size: .97rem; color: #666; line-height: 1.82; margin-top: 22px; }
+  .badge-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
+  .badge {
+    background: var(--gray); border: 1px solid #dde3f5; border-radius: 30px;
+    padding: 8px 16px; font-size: 12.5px; font-weight: 700; color: var(--navy);
+    display: inline-flex; align-items: center; gap: 6px;
+    transition: background var(--t), border-color var(--t), color var(--t);
+  }
+  .badge i { color: var(--blue); font-size: 10px; }
+  .badge:hover { background: var(--navy); color: #fff; border-color: var(--navy); }
+  .qs-cta { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn-navy {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: transparent; border: 1.5px solid rgba(15,23,113,.28);
+    color: var(--navy); font-size: 13.5px; font-weight: 700;
+    padding: 13px 26px; border-radius: 50px;
+    transition: background var(--t), border-color var(--t), color var(--t);
+  }
+  .btn-navy:hover { background: var(--navy); color: #fff; border-color: var(--navy); }
+
+  /* ================================================================
+     DIFERENCIAIS
+  ================================================================ */
+  #diferenciais { background: var(--navy); }
+  #diferenciais .section-eyebrow { color: var(--blue); }
+  #diferenciais .section-eyebrow::before,
+  #diferenciais .section-eyebrow::after { background: rgba(72,180,221,.35); }
+  #diferenciais .section-title { color: #fff; }
+  #diferenciais .section-sub   { color: rgba(255,255,255,.5); }
+  #diferenciais .divider { background: linear-gradient(90deg,var(--blue),var(--mid)); }
+
+  .feat-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; }
+  .feat-card {
+    background: rgba(255,255,255,.05); border: 1px solid rgba(72,180,221,.14);
+    border-radius: 16px; padding: 30px 24px;
+    transition: background var(--t), border-color var(--t), transform var(--t);
+  }
+  .feat-card:hover { background: rgba(72,180,221,.1); border-color: rgba(72,180,221,.38); transform: translateY(-4px); }
+  .feat-icon {
+    width: 54px; height: 54px; border-radius: 14px;
+    background: rgba(72,180,221,.12); border: 1px solid rgba(72,180,221,.25);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 23px; color: var(--blue); margin-bottom: 18px;
+    transition: background var(--t);
+  }
+  .feat-card:hover .feat-icon { background: rgba(72,180,221,.22); }
+  .feat-card h4 { color: #fff; font-size: .97rem; font-weight: 700; margin-bottom: 10px; }
+  .feat-card p  { color: rgba(255,255,255,.5); font-size: 13.5px; line-height: 1.65; }
+
+  /* ================================================================
+     SLOGAN BAR
+  ================================================================ */
+  .slogan-bar {
+    background: linear-gradient(90deg,var(--navy) 0%,var(--mid) 100%);
+    padding: 32px clamp(20px,5vw,60px);
+    display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap;
+  }
+  .slogan-bar img { max-height: 54px; filter: brightness(0) invert(1); opacity: .9; }
+  .slogan-text { color: rgba(255,255,255,.82); font-size: clamp(14px,2vw,17px); font-weight: 600; letter-spacing: .4px; text-align: center; }
+  .slogan-text strong { color: var(--blue); }
+
+  /* ================================================================
+     CONTATO
+  ================================================================ */
+  #contato { background: var(--gray); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 48px; align-items: start; }
+  .contact-cards { display: flex; flex-direction: column; gap: 16px; }
+  .contact-card {
+    background: #fff; border-radius: 14px; padding: 20px 22px;
+    display: flex; align-items: flex-start; gap: 16px;
+    box-shadow: 0 2px 14px rgba(15,23,113,.07);
+    transition: box-shadow var(--t), transform var(--t);
+  }
+  .contact-card:hover { box-shadow: var(--shadow); transform: translateX(4px); }
+  .contact-icon {
+    width: 44px; height: 44px; flex-shrink: 0; border-radius: 12px;
+    background: linear-gradient(135deg,var(--navy),var(--mid));
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 17px;
+  }
+  .contact-text strong { display: block; color: var(--navy); font-size: 13.5px; font-weight: 700; margin-bottom: 5px; }
+  .contact-text span,
+  .contact-text a { color: #888; font-size: 13.5px; line-height: 1.6; display: block; }
+  .contact-text a:hover { color: var(--blue); }
+  .contact-map { border-radius: 20px; overflow: hidden; box-shadow: var(--shadow); }
+  .contact-map iframe { width: 100%; height: 380px; border: none; display: block; }
+
+  /* ================================================================
+     FOOTER
+  ================================================================ */
+  footer {
+    background: var(--dark);
+    padding: 36px clamp(20px,5vw,60px);
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 18px;
+  }
+  .ft-logo img  { height: 50px; opacity: .9; }
+  .ft-copy      { color: rgba(255,255,255,.38); font-size: 12.5px; }
+  .ft-copy a    { color: var(--blue); }
+  .ft-credits img { height: 38px; opacity: .65; transition: opacity var(--t); }
+  .ft-credits img:hover { opacity: 1; }
+
+  /* ================================================================
+     GO-UP
+  ================================================================ */
+  #go-up {
+    position: fixed; bottom: 28px; right: 28px; z-index: 500;
+    width: 46px; height: 46px; border-radius: 50%; border: none;
+    background: var(--navy); color: #fff; font-size: 17px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 20px rgba(15,23,113,.35);
+    opacity: 0; visibility: hidden; transform: translateY(14px);
+    transition: opacity var(--t), visibility var(--t), transform var(--t), background var(--t);
+  }
+  #go-up.show { opacity: 1; visibility: visible; transform: translateY(0); }
+  #go-up:hover { background: var(--blue); }
+
+  /* ================================================================
+     RESPONSIVE — Tablet landscape  ≤ 1100px
+  ================================================================ */
+  @media (max-width: 1100px) {
+    .slide-inner { gap: 32px; }
+    .products-grid { grid-template-columns: repeat(2,1fr); }
+    .feat-grid { grid-template-columns: repeat(2,1fr); }
+    .contact-grid { grid-template-columns: 1fr; }
+    .contact-map iframe { height: 300px; }
+  }
+
+  /* ================================================================
+     RESPONSIVE — Tablet portrait  ≤ 768px
+  ================================================================ */
+  @media (max-width: 768px) {
+    :root { --nav-h: 62px; --topbar-h: 0px; }
+
+    /* Topbar: esconde no mobile para ganhar espaço */
+    #topbar { display: none; }
+
+    /* body: só compensa a navbar (topbar está oculta) */
+    body { padding-top: var(--nav-h); }
+
+    /* Hero: altura restante sem topbar */
+    #hero { height: calc(100vh - var(--nav-h)); height: calc(100dvh - var(--nav-h)); }
+
+    /* Nav hamburger */
+    .nav-links  { display: none; }
+    .hamburger  { display: flex; }
+
+    /* Hero: duas colunas → uma coluna, texto centrado */
+    .slide-inner { grid-template-columns: 1fr; text-align: center; }
+    .slide-visual { display: none; }
+    .slide-desc   { max-width: 100%; }
+    .slide-btns   { justify-content: center; }
+    .slide-h1     { font-size: clamp(1.7rem,6.5vw,2.5rem); }
+    .slide-eyebrow{ margin-left: auto; margin-right: auto; }
+
+    /* Stats: 2 colunas */
+    .stats-grid { grid-template-columns: repeat(2,1fr); }
+    .stat-item  { border-right: none; border-bottom: 1px solid rgba(255,255,255,.08); }
+    .stat-item:nth-child(odd)  { border-right: 1px solid rgba(255,255,255,.08); }
+    .stat-item:last-child, .stat-item:nth-last-child(2):nth-child(odd) { border-bottom: none; }
+
+    /* Produtos: 1 coluna */
+    .products-grid { grid-template-columns: 1fr; }
+
+    /* Quem somos: empilhado */
+    #quemsomos { flex-direction: column; }
+    .qs-visual { flex: none; min-height: 260px; }
+
+    /* Diferenciais: 1 coluna */
+    .feat-grid { grid-template-columns: repeat(2,1fr); }
+
+    /* Footer: centralizado */
+    footer { flex-direction: column; align-items: center; text-align: center; }
+  }
+
+  /* ================================================================
+     RESPONSIVE — Mobile  ≤ 480px
+  ================================================================ */
+  @media (max-width: 480px) {
+    .hero-swiper .swiper-button-prev,
+    .hero-swiper .swiper-button-next { display: none; }
+
+    .stats-grid { grid-template-columns: 1fr; }
+    .stat-item  { border-right: none !important; border-bottom: 1px solid rgba(255,255,255,.08); }
+    .stat-item:last-child { border-bottom: none; }
+
+    .feat-grid { grid-template-columns: 1fr; }
+    .feat-card { padding: 22px 18px; }
+
+    .slide-btns { flex-direction: column; align-items: center; }
+    .btn-p, .btn-o { width: 100%; max-width: 300px; justify-content: center; }
+
+    .qs-content, section { padding-left: 20px; padding-right: 20px; }
+    .slogan-bar img { display: none; }
+  }
+
+  /* SEARCH */
+  .nav-search{display:flex;align-items:center;position:relative}
+  .search-btn{background:none;border:none;cursor:pointer;color:var(--navy);font-size:18px;padding:8px 10px;border-radius:8px;display:flex;align-items:center;transition:color var(--t),background var(--t)}
+  .search-btn:hover{color:var(--blue);background:rgba(15,23,113,.06)}
+  .search-box{display:flex;align-items:center;gap:6px;width:0;overflow:hidden;transition:width .38s var(--ease),opacity .38s var(--ease);opacity:0}
+  .search-box.open{width:min(240px,34vw);opacity:1}
+  .search-box input{flex:1;border:none;border-bottom:2px solid var(--blue);outline:none;font-family:'Open Sans',sans-serif;font-size:13.5px;color:var(--navy);background:transparent;padding:4px 0;min-width:0}
+  .search-box input::placeholder{color:rgba(15,23,113,.35)}
+  .search-close{background:none;border:none;cursor:pointer;color:var(--navy);font-size:13px;padding:4px 6px;opacity:.55;transition:opacity var(--t);flex-shrink:0;display:flex;align-items:center}
+  .search-close:hover{opacity:1}
+  .search-dropdown{position:absolute;top:calc(100% + 12px);right:0;width:310px;background:#fff;border-radius:14px;box-shadow:0 20px 60px rgba(15,23,113,.18);border:1px solid rgba(15,23,113,.07);overflow:hidden;max-height:380px;overflow-y:auto;opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity .25s var(--ease),transform .25s var(--ease),visibility .25s;z-index:200}
+  .search-dropdown.open{opacity:1;visibility:visible;transform:translateY(0)}
+  .search-result{display:flex;align-items:center;gap:10px;padding:13px 16px;color:var(--navy);font-size:13px;font-weight:600;border-bottom:1px solid #f0f3fa;transition:background var(--t);text-decoration:none}
+  .search-result:last-child{border-bottom:none}
+  .search-result:hover{background:var(--gray)}
+  .search-result i{color:var(--blue);font-size:10px;flex-shrink:0}
+  .search-no-result{padding:20px 16px;color:#aaa;font-size:13px;display:flex;align-items:center;gap:8px}
+  .search-no-result i{color:var(--blue)}
+  @media(max-width:768px){
+    .nav-search{margin-left:auto}
+    .search-box.open{width:min(200px,52vw)}
+    .search-dropdown{width:min(300px,94vw);right:0}
+  }
+  </style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <img src="logobranca.png" alt="PROKINETICS">
+  <div class="loader-ring"></div>
+</div>
+
+<!-- TOPBAR -->
+<div id="topbar">
+  <span><i class="fa fa-phone"></i>
+    <a href="tel:+551938714172">(19) 3871-4172</a>
+    <span class="topbar-sep">|</span>
+    <a href="tel:+551932992194">(19) 3299-2194</a>
+  </span>
+  <span><i class="fa fa-envelope"></i>
+    <a href="mailto:prokinetics@prokinetics.com.br">prokinetics@prokinetics.com.br</a>
+  </span>
+</div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">
+    <img src="images/logopro.png" alt="PROKINETICS Tecnologia Ortopédica">
+  </a>
+
+  <div class="nav-links">
+    <a href="index.html">Principal</a>
+    <div class="nav-dropdown">
+      <a>Produtos <i class="fa fa-angle-down drop-icon"></i></a>
+      <div class="dropdown-menu">
+        <a href="base6584.html?pag=proteses.asp"><i class="fa fa-circle-dot"></i>Componentes para Próteses</a>
+        <a href="basee23d.html?pag=orteses.asp"><i class="fa fa-circle-dot"></i>Componentes para Órteses</a>
+        <a href="base7e54.html?pag=materiais.asp"><i class="fa fa-circle-dot"></i>Materiais</a>
+      </div>
+    </div>
+    <a href="base530f.html?pag=quemsomos.asp">Quem Somos</a>
+    <a href="base402e.html?pag=privacidade.asp">Privacidade</a>
+    <a href="#contato" class="nav-cta">Fale Conosco</a>
+  </div>
+
+  <div class="nav-search">
+    <button class="search-btn" id="searchBtn" aria-label="Pesquisar produto">
+      <i class="fa fa-magnifying-glass"></i>
+    </button>
+    <div class="search-box" id="searchBox">
+      <input type="text" id="searchInput" placeholder="Pesquisar produto..." autocomplete="off">
+      <button class="search-close" id="searchClose" aria-label="Fechar pesquisa"><i class="fa fa-xmark"></i></button>
+    </div>
+    <div class="search-dropdown" id="searchDropdown"></div>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MENU MOBILE -->
+<nav class="mobile-menu" id="mobileMenu" aria-label="Menu mobile">
+  <a href="index.html"><i class="fa fa-house"></i>Principal</a>
+  <a href="base6584.html?pag=proteses.asp"><i class="fa fa-circle-dot"></i>Componentes para Próteses</a>
+  <a href="basee23d.html?pag=orteses.asp"><i class="fa fa-circle-dot"></i>Componentes para Órteses</a>
+  <a href="base7e54.html?pag=materiais.asp"><i class="fa fa-circle-dot"></i>Materiais</a>
+  <a href="base530f.html?pag=quemsomos.asp"><i class="fa fa-building"></i>Quem Somos</a>
+  <a href="base402e.html?pag=privacidade.asp"><i class="fa fa-shield-halved"></i>Privacidade</a>
+  <a href="#contato" class="mobile-cta"><i class="fa fa-envelope"></i>Fale Conosco</a>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     HERO — DE PONTA A PONTA, 100 vw × 100 vh
+═══════════════════════════════════════════════════════════════ -->
+<section id="hero">
+  <div class="swiper hero-swiper">
+    <div class="swiper-wrapper">
+
+      <!-- SLIDE 1: Próteses -->
+      <div class="swiper-slide">
+        <div class="slide-bg" style="background-image:url('images/ushuaia.jpg')"></div>
+        <div class="slide-overlay"></div>
+        <div class="slide-dots"></div>
+        <div class="slide-content">
+          <div class="slide-inner">
+
+            <div class="slide-text">
+              <div class="slide-eyebrow">
+                <span class="dot-pulse"></span>Componentes para Próteses
+              </div>
+              <h1 class="slide-h1">
+                Tecnologia que<br><em>Transforma</em> Vidas
+              </h1>
+              <p class="slide-desc">
+                Representante exclusiva da <strong>Becker Orthopedic</strong> — componentes de
+                alta performance para próteses de membros inferiores e superiores,
+                importados diretamente dos EUA para todo o Brasil.
+              </p>
+              <div class="slide-btns">
+                <a href="base6584.html?pag=proteses.asp" class="btn-p">
+                  <i class="fa fa-list-ul"></i>Ver Catálogo
+                </a>
+                <a href="#contato" class="btn-o">
+                  <i class="fa fa-envelope"></i>Solicitar Orçamento
+                </a>
+              </div>
+            </div>
+
+            <div class="slide-visual">
+              <div class="vis-glow"></div>
+              <div class="vis-ring"></div>
+              <div class="vis-ring-2"></div>
+              <img class="vis-img" src="images/destaque1.jpg" alt="Componentes para Próteses">
+              <div class="vis-badge">
+                <div class="vis-badge-icon"><i class="fa fa-certificate"></i></div>
+                <div>
+                  <strong>Becker Orthopedic</strong>
+                  <span>Made in USA · Exclusivo BR</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 2: Órteses -->
+      <div class="swiper-slide">
+        <div class="slide-bg" style="background-image:url('images/ushuaia.jpg');background-position:60% center"></div>
+        <div class="slide-overlay" style="background:linear-gradient(105deg,rgba(9,14,74,.94) 0%,rgba(44,124,191,.7) 45%,rgba(15,23,113,.25) 75%,transparent 100%)"></div>
+        <div class="slide-dots"></div>
+        <div class="slide-content">
+          <div class="slide-inner">
+
+            <div class="slide-text">
+              <div class="slide-eyebrow">
+                <span class="dot-pulse"></span>Componentes para Órteses
+              </div>
+              <h1 class="slide-h1">
+                <em>Precisão</em> e Qualidade<br>Sem Compromisso
+              </h1>
+              <p class="slide-desc">
+                As linhas <strong>Wagner Polymertechnik</strong> e <strong>Silipos</strong>
+                trazem articulações, palmilhas e acessórios ortopédicos certificados —
+                engenharia alemã e americana a serviço da reabilitação.
+              </p>
+              <div class="slide-btns">
+                <a href="basee23d.html?pag=orteses.asp" class="btn-p">
+                  <i class="fa fa-list-ul"></i>Ver Catálogo
+                </a>
+                <a href="#contato" class="btn-o">
+                  <i class="fa fa-envelope"></i>Solicitar Orçamento
+                </a>
+              </div>
+            </div>
+
+            <div class="slide-visual">
+              <div class="vis-glow"></div>
+              <div class="vis-ring"></div>
+              <div class="vis-ring-2"></div>
+              <img class="vis-img" src="images/destaque2.jpg" alt="Componentes para Órteses">
+              <div class="vis-badge" style="top:auto;bottom:8%;">
+                <div class="vis-badge-icon"><i class="fa fa-globe"></i></div>
+                <div>
+                  <strong>Wagner + Silipos</strong>
+                  <span>Alemanha &amp; EUA · Exclusivo BR</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /swiper-wrapper -->
+
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-pagination"></div>
+    <div class="slide-progress"><div class="slide-progress-bar" id="progressBar"></div></div>
+    <div class="scroll-cue">
+      <div class="scroll-mouse"><div class="scroll-dot"></div></div>
+      <span>scroll</span>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div id="stats">
+  <div class="stats-grid">
+    <div class="stat-item" data-aos="fade-up" data-aos-delay="0">
+      <div class="stat-number">+30</div>
+      <div class="stat-label">Anos de experiência</div>
+    </div>
+    <div class="stat-item" data-aos="fade-up" data-aos-delay="80">
+      <div class="stat-number">3</div>
+      <div class="stat-label">Marcas internacionais exclusivas</div>
+    </div>
+    <div class="stat-item" data-aos="fade-up" data-aos-delay="160">
+      <div class="stat-number">+500</div>
+      <div class="stat-label">Produtos em catálogo</div>
+    </div>
+    <div class="stat-item" data-aos="fade-up" data-aos-delay="240">
+      <div class="stat-number">BR</div>
+      <div class="stat-label">Cobertura nacional</div>
+    </div>
+  </div>
+</div>
+
+<!-- PRODUTOS -->
+<section id="produtos">
+  <div class="wrap">
+    <div class="section-header" data-aos="fade-up">
+      <div class="section-eyebrow">Catálogo</div>
+      <h2 class="section-title">Nossas Linhas de Produtos</h2>
+      <p class="section-sub">Componentes certificados e testados, importados diretamente dos melhores fabricantes do mundo.</p>
+      <div class="divider"></div>
+    </div>
+    <div class="products-grid">
+
+      <div class="product-card" data-aos="fade-up" data-aos-delay="0">
+        <div class="pc-img">
+          <img src="images/componentes.png" alt="Componentes para Próteses" loading="lazy">
+          <div class="pc-hover"><a href="base6584.html?pag=proteses.asp"><i class="fa fa-arrow-right"></i>Ver Linha Completa</a></div>
+        </div>
+        <div class="pc-body">
+          <div class="pc-icon"><i class="fa fa-person-walking-with-cane"></i></div>
+          <h3>Componentes para Próteses</h3>
+          <p>Joelhos, tornozelos, pés, tubos e conexões de alta performance para membros inferiores e superiores.</p>
+          <a href="base6584.html?pag=proteses.asp" class="pc-link">Explorar <i class="fa fa-arrow-right" style="font-size:11px"></i></a>
+        </div>
+      </div>
+
+      <div class="product-card" data-aos="fade-up" data-aos-delay="110">
+        <div class="pc-img">
+          <img src="images/orteses.png" alt="Componentes para Órteses" loading="lazy">
+          <div class="pc-hover"><a href="basee23d.html?pag=orteses.asp"><i class="fa fa-arrow-right"></i>Ver Linha Completa</a></div>
+        </div>
+        <div class="pc-body">
+          <div class="pc-icon"><i class="fa fa-hand-dots"></i></div>
+          <h3>Componentes para Órteses</h3>
+          <p>Articulações, hastes, palmilhas e acessórios ortopédicos certificados para membros superiores e inferiores.</p>
+          <a href="basee23d.html?pag=orteses.asp" class="pc-link">Explorar <i class="fa fa-arrow-right" style="font-size:11px"></i></a>
+        </div>
+      </div>
+
+      <div class="product-card" data-aos="fade-up" data-aos-delay="220">
+        <div class="pc-img">
+          <img src="images/materiais.png" alt="Materiais" loading="lazy">
+          <div class="pc-hover"><a href="base7e54.html?pag=materiais.asp"><i class="fa fa-arrow-right"></i>Ver Linha Completa</a></div>
+        </div>
+        <div class="pc-body">
+          <div class="pc-icon"><i class="fa fa-layer-group"></i></div>
+          <h3>Materiais</h3>
+          <p>Resinas, fibras, espumas, silicones e ferramentas para ortopedia técnica — nacionais e importados.</p>
+          <a href="base7e54.html?pag=materiais.asp" class="pc-link">Explorar <i class="fa fa-arrow-right" style="font-size:11px"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- QUEM SOMOS -->
+<div id="quemsomos">
+  <div class="qs-visual" data-aos="fade-right" data-aos-duration="900">
+    <div class="qs-visual-inner">
+      <img class="qs-logo" src="logobranca.png" alt="PROKINETICS">
+      <div class="qs-cards">
+        <div class="qs-card">
+          <i class="fa fa-globe"></i>
+          <div><strong>Becker Orthopedic – EUA</strong><span>Representante exclusiva no Brasil</span></div>
+        </div>
+        <div class="qs-card">
+          <i class="fa fa-industry"></i>
+          <div><strong>Wagner Polymertechnik – Alemanha</strong><span>Representante exclusiva no Brasil</span></div>
+        </div>
+        <div class="qs-card">
+          <i class="fa fa-star"></i>
+          <div><strong>Silipos – EUA</strong><span>Representante exclusiva no Brasil</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="qs-content" data-aos="fade-left" data-aos-duration="900">
+    <div class="section-eyebrow">Sobre nós</div>
+    <h2 class="section-title">Quem Somos</h2>
+    <div class="divider"></div>
+    <p>A <strong style="color:var(--navy)">PROKINETICS</strong> oferece a mais completa linha de componentes para órteses e próteses ortopédicas, sendo representante exclusiva de várias empresas de reconhecimento internacional.</p>
+    <p>Distribuidora dos mais diversos materiais e ferramentas para a ortopedia técnica — nacionais e importados — com foco total na qualidade e na satisfação do profissional e do paciente.</p>
+    <div class="badge-list">
+      <span class="badge"><i class="fa fa-circle-check"></i>Becker Orthopedic</span>
+      <span class="badge"><i class="fa fa-circle-check"></i>Wagner Polymertechnik</span>
+      <span class="badge"><i class="fa fa-circle-check"></i>Silipos</span>
+    </div>
+    <div class="qs-cta">
+      <a href="base530f.html?pag=quemsomos.asp" class="btn-p" style="font-size:13.5px"><i class="fa fa-building"></i>Saiba Mais</a>
+      <a href="#contato" class="btn-navy"><i class="fa fa-envelope"></i>Entre em Contato</a>
+    </div>
+  </div>
+</div>
+
+<!-- DIFERENCIAIS -->
+<section id="diferenciais">
+  <div class="wrap">
+    <div class="section-header" data-aos="fade-up">
+      <div class="section-eyebrow">Por que nos escolher</div>
+      <h2 class="section-title">Nossos Diferenciais</h2>
+      <p class="section-sub">Qualidade, confiança e suporte técnico especializado para o profissional de ortopedia técnica.</p>
+      <div class="divider"></div>
+    </div>
+    <div class="feat-grid">
+      <div class="feat-card" data-aos="fade-up" data-aos-delay="0">
+        <div class="feat-icon"><i class="fa fa-award"></i></div>
+        <h4>Produtos Certificados</h4>
+        <p>Todos os componentes seguem rigorosos padrões internacionais de qualidade e segurança para uso clínico.</p>
+      </div>
+      <div class="feat-card" data-aos="fade-up" data-aos-delay="80">
+        <div class="feat-icon"><i class="fa fa-truck-fast"></i></div>
+        <h4>Entrega Nacional</h4>
+        <p>Distribuição ágil para todo o território brasileiro com rapidez e segurança nos pedidos.</p>
+      </div>
+      <div class="feat-card" data-aos="fade-up" data-aos-delay="160">
+        <div class="feat-icon"><i class="fa fa-headset"></i></div>
+        <h4>Suporte Técnico</h4>
+        <p>Equipe especializada para auxiliar na escolha dos melhores componentes para cada aplicação clínica.</p>
+      </div>
+      <div class="feat-card" data-aos="fade-up" data-aos-delay="240">
+        <div class="feat-icon"><i class="fa fa-globe-americas"></i></div>
+        <h4>Importação Direta</h4>
+        <p>Importamos diretamente dos fabricantes, garantindo qualidade original e rastreabilidade total.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLOGAN -->
+<div class="slogan-bar" data-aos="fade-up">
+  <img src="images/slogan.png" alt="Slogan PROKINETICS">
+  <p class="slogan-text">Tecnologia a serviço da <strong>qualidade de vida</strong></p>
+</div>
+
+<!-- CONTATO -->
+<section id="contato">
+  <div class="wrap">
+    <div class="section-header" data-aos="fade-up">
+      <div class="section-eyebrow">Fale Conosco</div>
+      <h2 class="section-title">Entre em Contato</h2>
+      <p class="section-sub">Estamos prontos para atender você. Entre em contato por telefone, e-mail ou nos visite.</p>
+      <div class="divider"></div>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-cards" data-aos="fade-right">
+        <div class="contact-card">
+          <div class="contact-icon"><i class="fa fa-map-pin"></i></div>
+          <div class="contact-text">
+            <strong>Endereço</strong>
+            <span>Rua Orozimbo Maia, 395<br>Vila Sônia, Valinhos-SP, Brasil</span>
+          </div>
+        </div>
+        <div class="contact-card">
+          <div class="contact-icon"><i class="fa fa-phone"></i></div>
+          <div class="contact-text">
+            <strong>Telefones</strong>
+            <a href="tel:+551938714172">(19) 3871-4172</a>
+            <a href="tel:+551932992194">(19) 3299-2194</a>
+          </div>
+        </div>
+        <div class="contact-card">
+          <div class="contact-icon"><i class="fa fa-envelope"></i></div>
+          <div class="contact-text">
+            <strong>E-mail</strong>
+            <a href="mailto:prokinetics@prokinetics.com.br">prokinetics@prokinetics.com.br</a>
+            <a href="mailto:comercial@prokinetics.com.br">comercial@prokinetics.com.br</a>
+          </div>
+        </div>
+      </div>
+      <div class="contact-map" data-aos="fade-left">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7347.0365899692315!2d-46.989298!3d-22.967961!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94c8cd8e13da2097%3A0x87ba965d3a376f92!2sR.+Orozimbo+Maia%2C+395+-+Vila+Sonia%2C+Valinhos+-+SP%2C+13274-008!5e0!3m2!1spt-BR!2sbr!4v1536600899317"
+          allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          title="Localização PROKINETICS">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-logo"><img src="logobranca.png" alt="PROKINETICS"></div>
+  <div class="ft-copy">&copy; 2026 <strong style="color:rgba(255,255,255,.55)">PROKINETICS Tecnologia Ortopédica Ltda.</strong> — Todos os direitos reservados. &nbsp;|&nbsp; <a href="base402e.html?pag=privacidade.asp">Privacidade</a></div>
+  <div class="ft-credits"><a href="https://www.bbshop.com.br" target="_blank" rel="noopener"><img src="images/bbshop.png" alt="BBShop"></a></div>
+</footer>
+
+<!-- GO-UP -->
+<button id="go-up" aria-label="Voltar ao topo"><i class="fa fa-chevron-up"></i></button>
+
+<!-- SCRIPTS -->
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<script>
+/* AOS */
+AOS.init({ duration: 680, easing: 'ease-out-cubic', once: true, offset: 55 });
+
+/* LOADER */
+window.addEventListener('load', () => {
+  setTimeout(() => document.getElementById('loader').classList.add('hide'), 500);
+});
+
+/* ── HERO SWIPER ── */
+const DELAY = 6500;
+const bar   = document.getElementById('progressBar');
+
+function resetProgress() {
+  bar.style.transition = 'none';
+  bar.style.width = '0%';
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    bar.style.transition = `width ${DELAY}ms linear`;
+    bar.style.width = '100%';
+  }));
+}
+
+const heroSwiper = new Swiper('.hero-swiper', {
+  loop:   true,
+  speed:  950,
+  effect: 'fade',
+  fadeEffect: { crossFade: true },
+  autoplay: { delay: DELAY, disableOnInteraction: false },
+  pagination: { el: '.swiper-pagination', clickable: true },
+  navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+  on: {
+    init()                    { resetProgress(); },
+    slideChangeTransitionStart() { resetProgress(); }
+  }
+});
+
+/* ── NAVBAR ao rolar ── */
+const navbar = document.getElementById('navbar');
+const goUp   = document.getElementById('go-up');
+
+window.addEventListener('scroll', () => {
+  const y = window.scrollY;
+  /* muda aparência ao rolar (a navbar não muda de posição — já está abaixo do hero) */
+  navbar.classList.toggle('scrolled', y > 80);
+  goUp.classList.toggle('show', y > 500);
+}, { passive: true });
+
+/* ── HAMBURGER ── */
+const ham = document.getElementById('hamburger');
+const mob = document.getElementById('mobileMenu');
+
+ham.addEventListener('click', () => {
+  const isOpen = ham.classList.toggle('open');
+  mob.classList.add('visible');
+  requestAnimationFrame(() => mob.classList.toggle('open', isOpen));
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+  /* fecha busca se estiver aberta no mobile */
+  if (isOpen) closeSearch();
+});
+
+mob.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  ham.classList.remove('open');
+  mob.classList.remove('open');
+  setTimeout(() => mob.classList.remove('visible'), 320);
+  document.body.style.overflow = '';
+}));
+
+/* ── SMOOTH SCROLL ── */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+  });
+});
+
+/* ── GO-UP ── */
+goUp.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+const PRODUCTS = [
+  {name:'Pés para próteses modulares',url:'base0ee5.html?pag=protth01.asp'},
+  {name:'Adaptadores para próteses modulares',url:'base8c52.html?pag=protth02.asp'},
+  {name:'Adaptadores para próteses modulares',url:'base218e.html?pag=protth03.asp'},
+  {name:'Articulações de joelho para próteses modulares',url:'base4617.html?pag=protth04.asp'},
+  {name:'Articulações de quadril para próteses modulares',url:'base5d0d.html?pag=protth05.asp'},
+  {name:'KIT TT: LITE LINER transtibial com joelheira e válvula',url:'base6919.html?pag=protth06.asp'},
+  {name:'LITE LINER GEL transtibial — com conexão',url:'baseb6d6.html?pag=protth08.asp'},
+  {name:'SILICON LINER transtibial — com conexão',url:'basefc99.html?pag=protth10.asp'},
+  {name:'KIT TF: LITE LINER transfemoral com anéis e válvula',url:'base0ab1.html?pag=protth21.asp'},
+  {name:'LITE LINER — TABELA DE MEDIDAS',url:'base1473.html?pag=protth20.asp'},
+  {name:'LITE LINER GEL — transfemoral',url:'base5759.html?pag=protth12.asp'},
+  {name:'Acessórios para próteses',url:'basede9e.html?pag=protth13.asp'},
+  {name:'Adaptador modular "Shuttle Lock"',url:'base565e.html?pag=protth14.asp'},
+  {name:'Meias e acessórios para coto com gel polímero',url:'base696c.html?pag=protth16.asp'},
+  {name:'Articulações de joelho para órteses — trava anel',url:'base7e67.html?pag=ort02.asp'},
+  {name:'Articulações de joelho para órteses — trava suíça',url:'base070c.html?pag=ort03.asp'},
+  {name:'Articulações de joelho para órteses — trava suíça modular',url:'base42dd.html?pag=ort33.asp'},
+  {name:'Articulações de joelho para órteses — com trava e ajuste',url:'base9388.html?pag=ort05.asp'},
+  {name:'Articulações de joelho para órteses — movimento livre',url:'base0395.html?pag=ort06.asp'},
+  {name:'Articulações de quadril para órteses',url:'base6999.html?pag=ort08.asp'},
+  {name:'Articulações de tornozelo para órteses',url:'base8f72.html?pag=ort09.asp'},
+  {name:'Estribos para órteses',url:'base711d.html?pag=ort10.asp'},
+  {name:'Articulações flexíveis TAMARACK',url:'baseeef5.html?pag=ort12.asp'},
+  {name:'Articulações flexíveis TAMARACK — exemplos',url:'base10c5.html?pag=ort13.asp'},
+  {name:'Artic. tornozelo "Camber Axis", "Oklahoma" e "FC2"',url:'base2467.html?pag=ort14.asp'},
+  {name:'Articulação MONODOS para órteses',url:'basefa6b.html?pag=ort15.asp'},
+  {name:'Órteses BECKER de controle da fase de apoio',url:'baseb581.html?pag=ort31.asp'},
+  {name:'Órtese BECKER PreStride®',url:'base9bab.html?pag=ort18.asp'},
+  {name:'Órtese BECKER Full Stride®',url:'base4998.html?pag=ort19.asp'},
+  {name:'Órtese BECKER Safety Stride®',url:'base54f8.html?pag=ort20.asp'},
+  {name:'Articulação de joelho policêntrica ULTRA G®',url:'base68d6.html?pag=ort24.asp'},
+  {name:'Órtese BECKER "Torsion Splint"',url:'base164a.html?pag=ort25.asp'},
+  {name:'Órtese de reciprocação Walkabout®',url:'base0e0d.html?pag=ort26.asp'},
+  {name:'Reforços de carbono COMPCORE',url:'base1308.html?pag=ort29.asp'},
+  {name:'Revestimento anti atrito ShearBan®',url:'base53e5.html?pag=ort30.asp'},
+  {name:'Folha de PVA / Cone de PVA',url:'basef16b.html?pag=mat01.asp'},
+  {name:'Malhas tubulares',url:'base3224.html?pag=mat02.asp'},
+  {name:'Malhas tubulares coloridas',url:'base644b.html?pag=mat03.asp'},
+  {name:'Malhas tubulares de Fibra e Híbridas',url:'base9405.html?pag=mat04.asp'},
+  {name:'Fita e Tecidos de Fibra de Vidro',url:'based3c2.html?pag=mat05.asp'},
+  {name:'Placas de PLASTAZOTE e EVA',url:'base86d8.html?pag=mat06.asp'},
+  {name:'Placa de polipropileno',url:'based197.html?pag=mat07.asp'},
+  {name:'Placas Rígidas e Flexíveis',url:'base68df.html?pag=mat08.asp'},
+  {name:'Folha Transfer para coloração de polipropileno',url:'baseaa2d.html?pag=mat09.asp'},
+  {name:'Folha Transfer para coloração de polipropileno',url:'base03a0.html?pag=mat10.asp'},
+  {name:'Ferramentas para a ortopedia técnica',url:'base035e.html?pag=mat13.asp'},
+  {name:'Estação de termomoldagem VACUPRESS',url:'baseb5b9.html?pag=mat15.asp'}
+];
+
+const searchBtn   = document.getElementById('searchBtn');
+const searchBox   = document.getElementById('searchBox');
+const searchInput = document.getElementById('searchInput');
+const searchClose = document.getElementById('searchClose');
+const searchDrop  = document.getElementById('searchDropdown');
+
+function renderDropdown(q) {
+  q = q.trim();
+  if (!q) { searchDrop.classList.remove('open'); searchDrop.innerHTML = ''; return; }
+  const results = PRODUCTS.filter(p => p.name.toLowerCase().includes(q.toLowerCase()));
+  if (!results.length) {
+    searchDrop.innerHTML = '<div class="search-no-result"><i class="fa fa-circle-exclamation"></i>Nenhum produto encontrado</div>';
+  } else {
+    searchDrop.innerHTML = results.map(p =>
+      `<a class="search-result" href="${p.url}"><i class="fa fa-circle-dot"></i>${p.name}</a>`
+    ).join('');
+  }
+  searchDrop.classList.add('open');
+}
+
+function closeSearch() {
+  searchBox.classList.remove('open');
+  searchDrop.classList.remove('open');
+  searchInput.value = '';
+  searchDrop.innerHTML = '';
+}
+
+searchBtn.addEventListener('click', () => {
+  searchBox.classList.add('open');
+  setTimeout(() => searchInput.focus(), 80);
+  /* fecha hamburger se estiver aberto no mobile */
+  if (ham.classList.contains('open')) {
+    ham.classList.remove('open');
+    mob.classList.remove('open');
+    setTimeout(() => mob.classList.remove('visible'), 320);
+    document.body.style.overflow = '';
+  }
+});
+searchClose.addEventListener('click', closeSearch);
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && searchBox.classList.contains('open')) closeSearch();
+});
+searchInput.addEventListener('input', () => renderDropdown(searchInput.value));
+document.addEventListener('click', e => {
+  if (!e.target.closest('.nav-search')) closeSearch();
+});
+</script>
+</body>
+</html>
