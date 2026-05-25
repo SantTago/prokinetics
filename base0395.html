@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Articulações de joelho para órteses — movimento livre — PROKINETICS</title>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+<link rel="shortcut icon" href="images/favicon.png">
+<style>
+:root{--navy:#0f1771;--blue:#48b4dd;--mid:#2C7CBF;--dark:#090e4a;--gray:#f4f6fb;--text:#4a4a5a;--ease:cubic-bezier(.4,0,.2,1);--t:.32s;--topbar-h:36px;--nav-h:72px;--nav-full:calc(var(--topbar-h) + var(--nav-h))}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Open Sans',sans-serif;color:var(--text);background:#fff;padding-top:var(--nav-full)}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;height:auto;display:block}
+#loader{position:fixed;inset:0;background:var(--dark);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;z-index:9999;transition:opacity .5s var(--ease),visibility .5s}
+#loader.hide{opacity:0;visibility:hidden}
+#loader img{width:180px}
+.loader-ring{width:44px;height:44px;border:3px solid rgba(255,255,255,.15);border-top-color:var(--blue);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+#topbar{height:var(--topbar-h);background:var(--dark);display:flex;align-items:center;justify-content:center;gap:32px;position:fixed;top:0;width:100%;z-index:900}
+#topbar a{font-size:11.5px;color:rgba(255,255,255,.72);display:flex;align-items:center;gap:6px;transition:color var(--t)}
+#topbar a:hover{color:#fff}
+#navbar{height:var(--nav-h);background:#fff;display:flex;align-items:center;padding:0 32px;gap:24px;position:fixed;top:var(--topbar-h);width:100%;z-index:800;box-shadow:0 2px 12px rgba(15,23,113,.07);transition:top var(--t),box-shadow var(--t)}
+#navbar.scrolled{box-shadow:0 4px 24px rgba(15,23,113,.13)}
+.nav-logo img{height:48px;width:auto}
+.nav-links{display:flex;align-items:center;gap:4px;margin-left:auto}
+.nav-links>a{padding:8px 14px;font-size:.875rem;font-weight:600;color:var(--navy);border-radius:8px;transition:background var(--t),color var(--t)}
+.nav-links>a:hover{background:var(--gray);color:var(--mid)}
+.nav-dropdown{position:relative}
+.nav-dropdown>a{padding:8px 14px;font-size:.875rem;font-weight:600;color:var(--navy);border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:6px;transition:background var(--t)}
+.nav-dropdown:hover>a{background:var(--gray)}
+.drop-icon{font-size:.7rem;transition:transform var(--t)}
+.nav-dropdown:hover .drop-icon{transform:rotate(180deg)}
+.dropdown-menu{position:absolute;top:calc(100% + 8px);left:0;background:#fff;border-radius:12px;box-shadow:0 8px 32px rgba(15,23,113,.14);padding:8px;min-width:260px;opacity:0;visibility:hidden;transform:translateY(6px);transition:all var(--t);z-index:50}
+.nav-dropdown:hover .dropdown-menu{opacity:1;visibility:visible;transform:translateY(0)}
+.dropdown-menu a{display:block;padding:9px 14px;font-size:.85rem;font-weight:600;color:var(--navy);border-radius:8px;transition:background var(--t)}
+.dropdown-menu a:hover{background:var(--gray)}
+.nav-cta{background:var(--navy)!important;color:#fff!important;padding:9px 20px!important;border-radius:8px!important}
+.nav-cta:hover{background:var(--mid)!important}
+.nav-search{display:flex;align-items:center;margin-left:12px;position:relative}
+.search-btn{background:none;border:none;cursor:pointer;color:var(--navy);font-size:1.1rem;padding:8px;border-radius:8px;transition:background var(--t)}
+.search-btn:hover{background:var(--gray)}
+.search-box{display:flex;align-items:center;gap:8px;background:var(--gray);border-radius:10px;padding:6px 12px;position:absolute;right:0;top:50%;transform:translateY(-50%);width:0;overflow:hidden;opacity:0;transition:width .35s var(--ease),opacity .25s;pointer-events:none}
+.search-box.open{width:280px;opacity:1;pointer-events:all}
+.search-box input{border:none;background:none;outline:none;font-family:inherit;font-size:.875rem;color:var(--navy);width:100%}
+.search-box input::placeholder{color:#9aa}
+.search-close{background:none;border:none;cursor:pointer;color:var(--text);font-size:.85rem;padding:2px;display:flex}
+.search-drop{position:absolute;top:calc(100% + 10px);right:0;background:#fff;border-radius:12px;box-shadow:0 8px 32px rgba(15,23,113,.14);padding:8px;min-width:300px;max-height:340px;overflow-y:auto;z-index:200;display:none}
+.search-drop.open{display:block}
+.search-result{display:flex;align-items:center;gap:10px;padding:9px 12px;font-size:.85rem;font-weight:600;color:var(--navy);border-radius:8px;transition:background var(--t)}
+.search-result:hover{background:var(--gray)}
+.search-result i{color:var(--blue);font-size:.7rem;flex-shrink:0}
+.search-no-result{padding:12px;font-size:.85rem;color:var(--text);text-align:center}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px;margin-left:auto}
+.hamburger span{display:block;width:24px;height:2px;background:var(--navy);border-radius:2px;transition:transform var(--t),opacity var(--t)}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-menu{position:fixed;top:var(--nav-h);left:0;width:100%;background:#fff;z-index:700;box-shadow:0 8px 24px rgba(15,23,113,.1);padding:16px 24px 24px;display:none;flex-direction:column;gap:4px;transform:translateY(-12px);opacity:0;transition:transform var(--t),opacity var(--t)}
+.mobile-menu.visible{display:flex}
+.mobile-menu.open{transform:translateY(0);opacity:1}
+.mobile-menu a{padding:12px 16px;font-size:.9rem;font-weight:600;color:var(--navy);border-radius:8px;transition:background var(--t)}
+.mobile-menu a:hover{background:var(--gray)}
+.mobile-menu .mob-cta{background:var(--navy);color:#fff;text-align:center;margin-top:8px}
+.page-banner{background:linear-gradient(135deg,var(--dark) 0%,var(--navy) 100%);padding:52px 40px 44px;position:relative;overflow:hidden}
+.page-banner::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(72,180,221,.18) 1px,transparent 1px);background-size:28px 28px;pointer-events:none}
+.bread{position:relative;z-index:1;font-size:12.5px;color:rgba(255,255,255,.5);display:flex;align-items:center;gap:8px;margin-bottom:18px;flex-wrap:wrap}
+.bread a{color:rgba(255,255,255,.7);display:flex;align-items:center;gap:6px;transition:color var(--t)}
+.bread a:hover{color:#fff}
+.page-banner h1{position:relative;z-index:1;font-size:clamp(1.5rem,3.5vw,2.4rem);font-weight:800;color:#fff;line-height:1.2;max-width:760px}
+.detail-wrap{max-width:860px;margin:0 auto;padding:clamp(40px,6vw,80px) clamp(20px,5vw,60px)}
+.detail-wrap img{width:100%;border-radius:12px;box-shadow:0 8px 36px rgba(15,23,113,.12);margin-bottom:32px}
+.detail-wrap p{font-size:.97rem;line-height:1.85;margin-bottom:18px}
+.detail-wrap strong{color:var(--navy)}
+footer{background:var(--dark);padding:40px 48px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.ft-logo img{height:40px;width:auto}
+.ft-copy{font-size:.82rem;color:rgba(255,255,255,.55);text-align:center}
+.ft-credits{font-size:.78rem;color:rgba(255,255,255,.35)}
+#go-up{position:fixed;bottom:28px;right:28px;width:44px;height:44px;border-radius:50%;background:var(--navy);border:none;color:#fff;font-size:.95rem;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(15,23,113,.28);opacity:0;visibility:hidden;transform:translateY(10px);transition:all var(--t);z-index:500}
+#go-up.show{opacity:1;visibility:visible;transform:translateY(0)}
+#go-up:hover{background:var(--mid)}
+@media(max-width:768px){:root{--nav-h:62px;--topbar-h:0px}#topbar{display:none}body{padding-top:var(--nav-h)}.nav-links{display:none}.hamburger{display:flex}footer{flex-direction:column;align-items:center;text-align:center}.page-banner{padding:36px 24px 32px}}
+@media(max-width:768px){.nav-search{display:none}}
+</style>
+</head>
+<body>
+<div id="loader"><img src="logobranca.png" alt="PROKINETICS"><div class="loader-ring"></div></div>
+<div id="topbar">
+  <a href="mailto:prokinetics@prokinetics.com.br"><i class="fa fa-envelope"></i> prokinetics@prokinetics.com.br</a>
+  <a href="tel:+551132880088"><i class="fa fa-phone"></i> (11) 3288-0088</a>
+</div>
+<nav id="navbar">
+  <a href="index.html" class="nav-logo"><img src="images/logopro.png" alt="PROKINETICS"></a>
+  <div class="nav-links">
+    <a href="index.html">Principal</a>
+    <div class="nav-dropdown">
+      <a>Produtos <i class="fa fa-angle-down drop-icon"></i></a>
+      <div class="dropdown-menu">
+        <a href="base6584.html?pag=proteses.asp">Componentes para Próteses</a>
+        <a href="basee23d.html?pag=orteses.asp">Componentes para Órteses</a>
+        <a href="base7e54.html?pag=materiais.asp">Materiais</a>
+      </div>
+    </div>
+    <a href="base530f.html?pag=quemsomos.asp">Quem Somos</a>
+    <a href="base402e.html?pag=privacidade.asp">Privacidade</a>
+    <a href="index.html#contato" class="nav-cta">Fale Conosco</a>
+  </div>
+  <div class="nav-search">
+    <button class="search-btn" id="searchBtn" aria-label="Buscar"><i class="fa fa-magnifying-glass"></i></button>
+    <div class="search-box" id="searchBox">
+      <i class="fa fa-magnifying-glass" style="color:var(--mid);font-size:.9rem"></i>
+      <input type="text" id="searchInput" placeholder="Buscar produto…" autocomplete="off">
+      <button class="search-close" id="searchClose" aria-label="Fechar"><i class="fa fa-xmark"></i></button>
+    </div>
+    <div class="search-drop" id="searchDrop"></div>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<nav class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Principal</a>
+  <a href="base6584.html?pag=proteses.asp">Componentes para Próteses</a>
+  <a href="basee23d.html?pag=orteses.asp">Componentes para Órteses</a>
+  <a href="base7e54.html?pag=materiais.asp">Materiais</a>
+  <a href="base530f.html?pag=quemsomos.asp">Quem Somos</a>
+  <a href="base402e.html?pag=privacidade.asp">Privacidade</a>
+  <a href="index.html#contato" class="mob-cta">Fale Conosco</a>
+</nav>
+
+<div class="page-banner">
+  <div class="bread">
+    <a href="basee23d.html?pag=orteses.asp"><i class="fa fa-arrow-left"></i> Componentes para Órteses</a>
+    <span>›</span><span>Articulações de joelho para órteses — movimento livre</span>
+  </div>
+  <h1>Articulações de joelho para órteses — movimento livre</h1>
+</div>
+
+<section class="detail-wrap" data-aos="fade-up">
+  <img src="images/ort06.png" alt="Articulações de joelho para órteses — movimento livre">
+  <p><strong>1005 Articulação de joelho livre</strong><br>
+  Articulação de joelho livre, fabricada em aço inox e hastes em alumínio. Códigos e tamanhos: vide tabela.</p>
+  <p><strong>1008 Articulação de joelho livre, eixo posterior</strong><br>
+  Articulação de joelho livre com o eixo (centro de rotação) posicionado posteriormente em relação às hastes de alumínio, proporcionando mais estabilidade e segurança em extensão total. Códigos e tamanhos: vide tabela.</p>
+  <p><strong>1009 Articulação de joelho livre, policêntrica</strong><br>
+  Articulação de joelho policêntrica com dois eixos interligados por um sistema de engrenagens, garantindo um movimento de flexão e extensão mais natural (movimento de translação). Códigos e tamanhos: vide tabela.</p>
+  <img src="images/tabort06.png" alt="Tabela articulações de joelho movimento livre">
+</section>
+
+<footer>
+  <div class="ft-logo"><img src="logobranca.png" alt="PROKINETICS"></div>
+  <div class="ft-copy">&copy; 2026 PROKINETICS Tecnologia Ortopédica Ltda. Todos os direitos reservados.</div>
+  <div class="ft-credits">Desenvolvido por PROKINETICS</div>
+</footer>
+<button id="go-up" aria-label="Voltar ao topo"><i class="fa fa-chevron-up"></i></button>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+AOS.init({duration:680,easing:'ease-out-cubic',once:true,offset:55});
+window.addEventListener('load',()=>{setTimeout(()=>document.getElementById('loader').classList.add('hide'),500)});
+const navbar=document.getElementById('navbar'),goUp=document.getElementById('go-up');
+window.addEventListener('scroll',()=>{const y=window.scrollY;navbar.classList.toggle('scrolled',y>80);goUp.classList.toggle('show',y>400)},{passive:true});
+goUp.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+const ham=document.getElementById('hamburger'),mob=document.getElementById('mobileMenu');
+ham.addEventListener('click',()=>{const o=ham.classList.toggle('open');mob.classList.add('visible');requestAnimationFrame(()=>mob.classList.toggle('open',o));document.body.style.overflow=o?'hidden':''});
+mob.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{ham.classList.remove('open');mob.classList.remove('open');setTimeout(()=>mob.classList.remove('visible'),320);document.body.style.overflow=''}));
+const PRODUCTS=[{name:'Pés para próteses modulares',url:'base0ee5.html?pag=protth01.asp'},{name:'Adaptadores para próteses modulares',url:'base8c52.html?pag=protth02.asp'},{name:'Adaptadores para próteses modulares',url:'base218e.html?pag=protth03.asp'},{name:'Articulações de joelho para próteses modulares',url:'base4617.html?pag=protth04.asp'},{name:'Articulações de quadril para próteses modulares',url:'base5d0d.html?pag=protth05.asp'},{name:'KIT TT: LITE LINER transtibial com joelheira e válvula',url:'base6919.html?pag=protth06.asp'},{name:'LITE LINER GEL transtibial — com conexão',url:'baseb6d6.html?pag=protth08.asp'},{name:'SILICON LINER transtibial — com conexão',url:'basefc99.html?pag=protth10.asp'},{name:'KIT TF: LITE LINER transfemoral com anéis e válvula',url:'base0ab1.html?pag=protth21.asp'},{name:'LITE LINER — TABELA DE MEDIDAS',url:'base1473.html?pag=protth20.asp'},{name:'LITE LINER GEL — transfemoral',url:'base5759.html?pag=protth12.asp'},{name:'Acessórios para próteses',url:'basede9e.html?pag=protth13.asp'},{name:'Adaptador modular "Shuttle Lock"',url:'base565e.html?pag=protth14.asp'},{name:'Meias e acessórios para coto com gel polímero',url:'base696c.html?pag=protth16.asp'},{name:'Articulações de joelho para órteses — trava anel',url:'base7e67.html?pag=ort02.asp'},{name:'Articulações de joelho para órteses — trava suíça',url:'base070c.html?pag=ort03.asp'},{name:'Articulações de joelho para órteses — trava suíça modular',url:'base42dd.html?pag=ort33.asp'},{name:'Articulações de joelho para órteses — com trava e ajuste',url:'base9388.html?pag=ort05.asp'},{name:'Articulações de joelho para órteses — movimento livre',url:'base0395.html?pag=ort06.asp'},{name:'Articulações de quadril para órteses',url:'base6999.html?pag=ort08.asp'},{name:'Articulações de tornozelo para órteses',url:'base8f72.html?pag=ort09.asp'},{name:'Estribos para órteses',url:'base711d.html?pag=ort10.asp'},{name:'Articulações flexíveis TAMARACK',url:'baseeef5.html?pag=ort12.asp'},{name:'Articulações flexíveis TAMARACK — exemplos',url:'base10c5.html?pag=ort13.asp'},{name:'Artic. tornozelo "Camber Axis", "Oklahoma" e "FC2"',url:'base2467.html?pag=ort14.asp'},{name:'Articulação MONODOS para órteses',url:'basefa6b.html?pag=ort15.asp'},{name:'Órteses BECKER de controle da fase de apoio',url:'baseb581.html?pag=ort31.asp'},{name:'Órtese BECKER PreStride®',url:'base9bab.html?pag=ort18.asp'},{name:'Órtese BECKER Full Stride®',url:'base4998.html?pag=ort19.asp'},{name:'Órtese BECKER Safety Stride®',url:'base54f8.html?pag=ort20.asp'},{name:'Articulação de joelho policêntrica ULTRA G®',url:'base68d6.html?pag=ort24.asp'},{name:'Órtese BECKER "Torsion Splint"',url:'base164a.html?pag=ort25.asp'},{name:'Órtese de reciprocação Walkabout®',url:'base0e0d.html?pag=ort26.asp'},{name:'Reforços de carbono COMPCORE',url:'base1308.html?pag=ort29.asp'},{name:'Revestimento anti atrito ShearBan®',url:'base53e5.html?pag=ort30.asp'},{name:'Folha de PVA / Cone de PVA',url:'basef16b.html?pag=mat01.asp'},{name:'Malhas tubulares',url:'base3224.html?pag=mat02.asp'},{name:'Malhas tubulares coloridas',url:'base644b.html?pag=mat03.asp'},{name:'Malhas tubulares de Fibra e Híbridas',url:'base9405.html?pag=mat04.asp'},{name:'Fita e Tecidos de Fibra de Vidro',url:'based3c2.html?pag=mat05.asp'},{name:'Placas de PLASTAZOTE e EVA',url:'base86d8.html?pag=mat06.asp'},{name:'Placa de polipropileno',url:'based197.html?pag=mat07.asp'},{name:'Placas Rígidas e Flexíveis',url:'base68df.html?pag=mat08.asp'},{name:'Folha Transfer para coloração de polipropileno',url:'baseaa2d.html?pag=mat09.asp'},{name:'Folha Transfer para coloração de polipropileno',url:'base03a0.html?pag=mat10.asp'},{name:'Ferramentas para a ortopedia técnica',url:'base035e.html?pag=mat13.asp'},{name:'Estação de termomoldagem VACUPRESS',url:'baseb5b9.html?pag=mat15.asp'}];
+const searchBtn=document.getElementById('searchBtn'),searchBox=document.getElementById('searchBox'),searchInput=document.getElementById('searchInput'),searchClose=document.getElementById('searchClose'),searchDrop=document.getElementById('searchDrop');
+function renderDropdown(q){q=q.trim();if(!q){searchDrop.classList.remove('open');searchDrop.innerHTML='';return}const r=PRODUCTS.filter(p=>p.name.toLowerCase().includes(q.toLowerCase()));searchDrop.innerHTML=r.length?r.map(p=>`<a class="search-result" href="${p.url}"><i class="fa fa-circle-dot"></i>${p.name}</a>`).join(''):'<div class="search-no-result">Nenhum produto encontrado.</div>';searchDrop.classList.add('open')}
+function closeSearch(){searchBox.classList.remove('open');searchDrop.classList.remove('open');searchInput.value='';searchDrop.innerHTML=''}
+searchBtn.addEventListener('click',()=>{searchBox.classList.add('open');setTimeout(()=>searchInput.focus(),80)});
+searchClose.addEventListener('click',closeSearch);
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&searchBox.classList.contains('open'))closeSearch()});
+searchInput.addEventListener('input',()=>renderDropdown(searchInput.value));
+document.addEventListener('click',e=>{if(!e.target.closest('.nav-search'))closeSearch()});
+</script>
+</body>
+</html>

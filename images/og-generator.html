@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    width: 1200px;
+    height: 630px;
+    overflow: hidden;
+    font-family: 'Open Sans', Arial, sans-serif;
+  }
+  .card {
+    width: 1200px;
+    height: 630px;
+    background: linear-gradient(120deg, #090e4a 0%, #0f1771 55%, #2C7CBF 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  /* Círculos decorativos */
+  .card::before {
+    content: '';
+    position: absolute;
+    width: 700px; height: 700px;
+    border-radius: 50%;
+    border: 1px solid rgba(72,180,221,.12);
+    top: -200px; right: -100px;
+  }
+  .card::after {
+    content: '';
+    position: absolute;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    border: 1px solid rgba(72,180,221,.08);
+    bottom: -150px; left: -80px;
+  }
+  .logo {
+    height: 120px;
+    width: auto;
+    position: relative;
+    z-index: 2;
+    filter: drop-shadow(0 4px 24px rgba(0,0,0,.4));
+  }
+  .tagline {
+    color: rgba(255,255,255,.85);
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: .5px;
+    position: relative;
+    z-index: 2;
+    text-align: center;
+  }
+  .badges {
+    display: flex;
+    gap: 16px;
+    position: relative;
+    z-index: 2;
+    margin-top: 8px;
+  }
+  .badge {
+    background: rgba(255,255,255,.1);
+    border: 1px solid rgba(72,180,221,.35);
+    border-radius: 40px;
+    padding: 8px 22px;
+    color: rgba(255,255,255,.8);
+    font-size: 15px;
+    font-weight: 600;
+    backdrop-filter: blur(4px);
+  }
+  .url {
+    position: absolute;
+    bottom: 28px;
+    right: 40px;
+    color: rgba(255,255,255,.35);
+    font-size: 14px;
+    letter-spacing: .3px;
+    z-index: 2;
+  }
+  .dot {
+    position: absolute;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #48b4dd;
+    top: 50%; right: 44px;
+    transform: translateY(-50%);
+    animation: none;
+    z-index: 2;
+  }
+</style>
+</head>
+<body>
+<div class="card">
+  <img class="logo" src="../logobranca.png" alt="PROKINETICS">
+  <div class="tagline">Componentes para Órteses e Próteses</div>
+  <div class="badges">
+    <div class="badge">Becker Orthopedic</div>
+    <div class="badge">Wagner Polymertechnik</div>
+    <div class="badge">Silipos</div>
+  </div>
+  <div class="url">santtago.github.io/prokinetics</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Folha Transfer para coloração de polipropileno — PROKINETICS</title>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+<link rel="shortcut icon" href="images/favicon.png">
+<style>
+:root{--navy:#0f1771;--blue:#48b4dd;--mid:#2C7CBF;--dark:#090e4a;--gray:#f4f6fb;--text:#4a4a5a;--ease:cubic-bezier(.4,0,.2,1);--t:.32s;--topbar-h:36px;--nav-h:72px;--nav-full:calc(var(--topbar-h) + var(--nav-h))}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Open Sans',sans-serif;color:var(--text);background:#fff;padding-top:var(--nav-full)}
+a{text-decoration:none;color:inherit}
+#loader{position:fixed;inset:0;background:var(--dark);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;z-index:9999;transition:opacity .5s var(--ease)}
+#loader img{width:180px}
+.loader-ring{width:48px;height:48px;border:4px solid rgba(255,255,255,.15);border-top-color:var(--blue);border-radius:50%;animation:spin .9s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+#topbar{position:fixed;top:0;left:0;right:0;height:var(--topbar-h);background:var(--navy);display:flex;align-items:center;justify-content:space-between;padding:0 24px;z-index:900;font-size:.78rem;color:rgba(255,255,255,.82)}
+.topbar-contact a{color:rgba(255,255,255,.82);margin-left:18px;transition:color var(--t)}
+.topbar-contact a:hover{color:var(--blue)}
+.topbar-social a{color:rgba(255,255,255,.7);margin-left:12px;font-size:.85rem;transition:color var(--t)}
+.topbar-social a:hover{color:var(--blue)}
+#navbar{position:fixed;top:var(--topbar-h);left:0;right:0;height:var(--nav-h);background:#fff;box-shadow:0 2px 16px rgba(15,23,113,.10);display:flex;align-items:center;justify-content:space-between;padding:0 32px;z-index:800;transition:box-shadow var(--t)}
+#navbar.scrolled{box-shadow:0 4px 24px rgba(15,23,113,.18)}
+.nav-logo img{height:48px;width:auto}
+.nav-links{display:flex;align-items:center;gap:8px;list-style:none}
+.nav-links a{font-size:.92rem;font-weight:600;color:var(--navy);padding:6px 14px;border-radius:6px;transition:background var(--t),color var(--t)}
+.nav-links a:hover,.nav-links a.active{background:var(--navy);color:#fff}
+.nav-right{display:flex;align-items:center;gap:16px}
+.nav-search{position:relative}
+.nav-search input{border:1.5px solid #dde3f0;border-radius:22px;padding:7px 38px 7px 16px;font-size:.88rem;width:220px;outline:none;transition:border var(--t),box-shadow var(--t);font-family:'Open Sans',sans-serif}
+.nav-search input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(72,180,221,.13)}
+.nav-search .search-icon{position:absolute;right:12px;top:50%;transform:translateY(-50%);color:var(--mid);pointer-events:none}
+.search-dropdown{position:absolute;top:calc(100% + 6px);left:0;right:0;background:#fff;border-radius:10px;box-shadow:0 8px 32px rgba(15,23,113,.13);overflow:hidden;z-index:999;display:none}
+.search-dropdown.open{display:block}
+.search-item{padding:10px 16px;font-size:.88rem;cursor:pointer;transition:background var(--t)}
+.search-item:hover{background:var(--gray)}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.hamburger span{display:block;width:26px;height:2.5px;background:var(--navy);border-radius:2px;transition:transform var(--t),opacity var(--t)}
+.hamburger.open span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+.mobile-menu{display:none;position:fixed;top:var(--nav-h);left:0;right:0;background:#fff;box-shadow:0 8px 24px rgba(15,23,113,.13);z-index:790;padding:16px 24px 24px;flex-direction:column;gap:4px}
+.mobile-menu.active{display:flex}
+.mobile-menu a{font-size:.95rem;font-weight:600;color:var(--navy);padding:10px 14px;border-radius:8px;transition:background var(--t)}
+.mobile-menu a:hover{background:var(--gray)}
+.page-banner{background:linear-gradient(120deg,var(--dark) 0%,var(--navy) 60%,var(--mid) 100%);padding:48px 32px 40px;text-align:center;color:#fff}
+.bread{font-size:.83rem;margin-bottom:14px;opacity:.78}
+.bread a{color:#fff;opacity:.78;transition:opacity var(--t)}
+.bread a:hover{opacity:1}
+.bread i{margin-right:6px}
+.page-banner h1{font-size:2rem;font-weight:800;letter-spacing:-.5px}
+.detail-wrap{max-width:960px;margin:0 auto;padding:56px 24px 72px}
+.product-img{text-align:center;margin-bottom:40px}
+.product-img img{max-width:100%;border-radius:14px;box-shadow:0 8px 32px rgba(15,23,113,.10)}
+.product-block{background:var(--gray);border-radius:14px;padding:32px 36px;margin-bottom:28px}
+.product-block h2{font-size:1.18rem;font-weight:700;color:var(--navy);margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.product-block h2 i{color:var(--blue)}
+.product-block p{font-size:.96rem;line-height:1.75;color:var(--text)}
+.product-block ul{padding-left:20px;margin-top:8px}
+.product-block ul li{font-size:.95rem;line-height:1.8;color:var(--text)}
+.ref-badge{display:inline-block;background:var(--navy);color:#fff;font-size:.75rem;font-weight:700;padding:3px 10px;border-radius:20px;margin-bottom:10px;letter-spacing:.5px}
+.table-img{text-align:center;margin-top:40px}
+.table-img img{max-width:100%;border-radius:10px;box-shadow:0 4px 16px rgba(15,23,113,.08)}
+footer{background:var(--dark);color:rgba(255,255,255,.75);padding:48px 32px 28px;text-align:center}
+.ft-logo img{height:52px;margin-bottom:20px}
+.ft-links{display:flex;justify-content:center;flex-wrap:wrap;gap:8px 24px;margin-bottom:20px}
+.ft-links a{font-size:.87rem;color:rgba(255,255,255,.65);transition:color var(--t)}
+.ft-links a:hover{color:var(--blue)}
+.ft-copy{font-size:.8rem;opacity:.5}
+#go-up{position:fixed;bottom:28px;right:28px;width:44px;height:44px;border-radius:50%;background:var(--navy);color:#fff;border:none;cursor:pointer;font-size:1.1rem;box-shadow:0 4px 16px rgba(15,23,113,.25);opacity:0;pointer-events:none;transition:opacity var(--t),transform var(--t)}
+#go-up.visible{opacity:1;pointer-events:all}
+#go-up:hover{transform:translateY(-3px)}
+@media(max-width:768px){
+  body{padding-top:var(--nav-h)}
+  #topbar{display:none}
+  #navbar{top:0;padding:0 18px}
+  .nav-links,.nav-search{display:none}
+  .hamburger{display:flex}
+  .page-banner{padding:36px 18px 30px}
+  .page-banner h1{font-size:1.45rem}
+  .detail-wrap{padding:36px 16px 56px}
+  .product-block{padding:22px 20px}
+}
+</style>
+</head>
+<body>
+
+<div id="loader">
+  <img src="logobranca.png" alt="PROKINETICS">
+  <div class="loader-ring"></div>
+</div>
+
+<div id="topbar">
+  <div class="topbar-contact">
+    <a href="mailto:contato@prokinetics.com.br"><i class="fa fa-envelope"></i> contato@prokinetics.com.br</a>
+    <a href="tel:+551132881101"><i class="fa fa-phone"></i> (11) 3288-1101</a>
+  </div>
+  <div class="topbar-social">
+    <a href="#"><i class="fab fa-instagram"></i></a>
+    <a href="#"><i class="fab fa-facebook-f"></i></a>
+    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+  </div>
+</div>
+
+<nav id="navbar">
+  <a href="index.html" class="nav-logo"><img src="images/logopro.png" alt="PROKINETICS"></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Início</a></li>
+    <li><a href="base6584.html?pag=proteses.asp">Próteses</a></li>
+    <li><a href="basee23d.html?pag=orteses.asp">Órteses</a></li>
+    <li><a href="base7e54.html?pag=materiais.asp" class="active">Materiais</a></li>
+    <li><a href="base5c45.html?pag=empresa.asp">Empresa</a></li>
+    <li><a href="base1b4d.html?pag=contato.asp">Contato</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="nav-search">
+      <input type="text" id="searchInput" placeholder="Buscar produto…" autocomplete="off">
+      <i class="fa fa-search search-icon"></i>
+      <div class="search-dropdown" id="searchDropdown"></div>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<nav class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Início</a>
+  <a href="base6584.html?pag=proteses.asp">Próteses</a>
+  <a href="basee23d.html?pag=orteses.asp">Órteses</a>
+  <a href="base7e54.html?pag=materiais.asp">Materiais</a>
+  <a href="base5c45.html?pag=empresa.asp">Empresa</a>
+  <a href="base1b4d.html?pag=contato.asp">Contato</a>
+</nav>
+
+<div class="page-banner">
+  <div class="bread">
+    <a href="base7e54.html?pag=materiais.asp"><i class="fa fa-arrow-left"></i> Materiais</a>
+    &nbsp;/&nbsp; Folha Transfer para coloração de polipropileno
+  </div>
+  <h1>Folha Transfer para coloração de polipropileno</h1>
+</div>
+
+<section class="detail-wrap" data-aos="fade-up">
+
+  <div class="product-img">
+    <img src="images/mat09.png" alt="Folha Transfer para coloração de polipropileno">
+  </div>
+
+  <div class="product-block" data-aos="fade-up" data-aos-delay="60">
+    <span class="ref-badge">Ref. 9T90</span>
+    <h2><i class="fa fa-paint-brush"></i> Folha Transfer — estampagem a calor</h2>
+    <p>A Folha Transfer 9T90 permite a aplicação de estampas coloridas e personalizadas sobre placas de polipropileno por meio de calor. O processo de transferência por calor é simples e não requer equipamentos especiais além de uma prensa ou ferro quente.</p>
+    <ul>
+      <li>Ampla variedade de desenhos e cores</li>
+      <li>Temas infantis, juvenis e adultos</li>
+      <li>Aplicável diretamente sobre polipropileno termomoldado</li>
+      <li>Resultado estético duradouro e resistente</li>
+      <li>Proporciona personalização e maior adesão do paciente ao uso da órtese ou prótese</li>
+    </ul>
+  </div>
+
+  <div class="table-img" data-aos="fade-up" data-aos-delay="120">
+    <img src="images/tabmat09.png" alt="Tabela — Folha Transfer">
+  </div>
+
+</section>
+
+<footer>
+  <div class="ft-logo"><img src="logobranca.png" alt="PROKINETICS"></div>
+  <div class="ft-links">
+    <a href="index.html">Início</a>
+    <a href="base6584.html?pag=proteses.asp">Próteses</a>
+    <a href="basee23d.html?pag=orteses.asp">Órteses</a>
+    <a href="base7e54.html?pag=materiais.asp">Materiais</a>
+    <a href="base5c45.html?pag=empresa.asp">Empresa</a>
+    <a href="base1b4d.html?pag=contato.asp">Contato</a>
+  </div>
+  <p class="ft-copy">&copy; 2026 PROKINETICS. Todos os direitos reservados.</p>
+</footer>
+
+<button id="go-up" aria-label="Voltar ao topo"><i class="fa fa-chevron-up"></i></button>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+AOS.init({duration:700,once:true,offset:60});
+window.addEventListener('load',()=>{
+  const l=document.getElementById('loader');
+  l.style.opacity='0';
+  setTimeout(()=>l.style.display='none',500);
+});
+const navbar=document.getElementById('navbar');
+window.addEventListener('scroll',()=>{
+  navbar.classList.toggle('scrolled',window.scrollY>40);
+  document.getElementById('go-up').classList.toggle('visible',window.scrollY>300);
+});
+document.getElementById('go-up').addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+const hamburger=document.getElementById('hamburger');
+const mobileMenu=document.getElementById('mobileMenu');
+hamburger.addEventListener('click',()=>{
+  hamburger.classList.toggle('open');
+  mobileMenu.classList.toggle('active');
+});
+const PRODUCTS=[
+  {name:'Pés para próteses modulares',url:'base0ee5.html?pag=protth01.asp'},
+  {name:'Adaptadores para próteses modulares',url:'base8c52.html?pag=protth02.asp'},
+  {name:'Adaptadores para próteses modulares',url:'base218e.html?pag=protth03.asp'},
+  {name:'Articulações de joelho para próteses modulares',url:'base4617.html?pag=protth04.asp'},
+  {name:'Articulações de quadril para próteses modulares',url:'base5d0d.html?pag=protth05.asp'},
+  {name:'KIT TT: LITE LINER transtibial com joelheira e válvula',url:'base6919.html?pag=protth06.asp'},
+  {name:'LITE LINER GEL transtibial — com conexão',url:'baseb6d6.html?pag=protth08.asp'},
+  {name:'SILICON LINER transtibial — com conexão',url:'basefc99.html?pag=protth10.asp'},
+  {name:'KIT TF: LITE LINER transfemoral com anéis e válvula',url:'base0ab1.html?pag=protth21.asp'},
+  {name:'LITE LINER — TABELA DE MEDIDAS',url:'base1473.html?pag=protth20.asp'},
+  {name:'LITE LINER GEL — transfemoral',url:'base5759.html?pag=protth12.asp'},
+  {name:'Acessórios para próteses',url:'basede9e.html?pag=protth13.asp'},
+  {name:'Adaptador modular "Shuttle Lock"',url:'base565e.html?pag=protth14.asp'},
+  {name:'Meias e acessórios para coto com gel polímero',url:'base696c.html?pag=protth16.asp'},
+  {name:'Articulações de joelho para órteses — trava anel',url:'base7e67.html?pag=ort02.asp'},
+  {name:'Articulações de joelho para órteses — trava suíça',url:'base070c.html?pag=ort03.asp'},
+  {name:'Articulações de joelho para órteses — trava suíça modular',url:'base42dd.html?pag=ort33.asp'},
+  {name:'Articulações de joelho para órteses — com trava e ajuste',url:'base9388.html?pag=ort05.asp'},
+  {name:'Articulações de joelho para órteses — movimento livre',url:'base0395.html?pag=ort06.asp'},
+  {name:'Articulações de quadril para órteses',url:'base6999.html?pag=ort08.asp'},
+  {name:'Articulações de tornozelo para órteses',url:'base8f72.html?pag=ort09.asp'},
+  {name:'Estribos para órteses',url:'base711d.html?pag=ort10.asp'},
+  {name:'Articulações flexíveis TAMARACK',url:'baseeef5.html?pag=ort12.asp'},
+  {name:'Articulações flexíveis TAMARACK — exemplos',url:'base10c5.html?pag=ort13.asp'},
+  {name:'Artic. tornozelo "Camber Axis", "Oklahoma" e "FC2"',url:'base2467.html?pag=ort14.asp'},
+  {name:'Articulação MONODOS para órteses',url:'basefa6b.html?pag=ort15.asp'},
+  {name:'Órteses BECKER de controle da fase de apoio',url:'baseb581.html?pag=ort31.asp'},
+  {name:'Órtese BECKER PreStride®',url:'base9bab.html?pag=ort18.asp'},
+  {name:'Órtese BECKER Full Stride®',url:'base4998.html?pag=ort19.asp'},
+  {name:'Órtese BECKER Safety Stride®',url:'base54f8.html?pag=ort20.asp'},
+  {name:'Articulação de joelho policêntrica ULTRA G®',url:'base68d6.html?pag=ort24.asp'},
+  {name:'Órtese BECKER "Torsion Splint"',url:'base164a.html?pag=ort25.asp'},
+  {name:'Órtese de reciprocação Walkabout®',url:'base0e0d.html?pag=ort26.asp'},
+  {name:'Reforços de carbono COMPCORE',url:'base1308.html?pag=ort29.asp'},
+  {name:'Revestimento anti atrito ShearBan®',url:'base53e5.html?pag=ort30.asp'},
+  {name:'Folha de PVA / Cone de PVA',url:'basef16b.html?pag=mat01.asp'},
+  {name:'Malhas tubulares',url:'base3224.html?pag=mat02.asp'},
+  {name:'Malhas tubulares coloridas',url:'base644b.html?pag=mat03.asp'},
+  {name:'Malhas tubulares de Fibra e Híbridas',url:'base9405.html?pag=mat04.asp'},
+  {name:'Fita e Tecidos de Fibra de Vidro',url:'based3c2.html?pag=mat05.asp'},
+  {name:'Placas de PLASTAZOTE e EVA',url:'base86d8.html?pag=mat06.asp'},
+  {name:'Placa de polipropileno',url:'based197.html?pag=mat07.asp'},
+  {name:'Placas Rígidas e Flexíveis',url:'base68df.html?pag=mat08.asp'},
+  {name:'Folha Transfer para coloração de polipropileno',url:'baseaa2d.html?pag=mat09.asp'},
+  {name:'Folha Transfer para coloração de polipropileno',url:'base03a0.html?pag=mat10.asp'},
+  {name:'Ferramentas para a ortopedia técnica',url:'base035e.html?pag=mat13.asp'},
+  {name:'Estação de termomoldagem VACUPRESS',url:'baseb5b9.html?pag=mat15.asp'}
+];
+const input=document.getElementById('searchInput');
+const dropdown=document.getElementById('searchDropdown');
+function renderDropdown(q){
+  const r=PRODUCTS.filter(p=>p.name.toLowerCase().includes(q.toLowerCase()));
+  if(!r.length||!q){dropdown.classList.remove('open');return;}
+  dropdown.innerHTML=r.map(p=>`<div class="search-item" onclick="location.href='${p.url}'">${p.name}</div>`).join('');
+  dropdown.classList.add('open');
+}
+input.addEventListener('input',()=>renderDropdown(input.value));
+document.addEventListener('click',e=>{if(!e.target.closest('.nav-search'))dropdown.classList.remove('open');});
+</script>
+</body>
+</html>

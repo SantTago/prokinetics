@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Componentes para Próteses — PROKINETICS Tecnologia Ortopédica. Representante exclusiva de Becker Orthopedic (EUA) e Silipos (EUA).">
+  <title>Componentes para Próteses | PROKINETICS Tecnologia Ortopédica</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+  <link rel="shortcut icon" href="images/favicon.png">
+  <style>
+  :root{--navy:#0f1771;--blue:#48b4dd;--mid:#2C7CBF;--dark:#090e4a;--white:#fff;--gray:#f4f6fb;--text:#4a4a5a;--shadow:0 8px 40px rgba(15,23,113,.14);--radius:16px;--ease:cubic-bezier(.4,0,.2,1);--t:.32s;--topbar-h:36px;--nav-h:72px;--nav-full:calc(var(--topbar-h) + var(--nav-h))}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Open Sans',sans-serif;background:#fff;color:var(--text);overflow-x:hidden;padding-top:var(--nav-full)}
+  a{text-decoration:none;color:inherit}
+  img{max-width:100%;display:block}
+  ul{list-style:none}
+
+  /* LOADER */
+  #loader{position:fixed;inset:0;z-index:9999;background:var(--dark);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;transition:opacity .6s var(--ease),visibility .6s var(--ease)}
+  #loader.hide{opacity:0;visibility:hidden;pointer-events:none}
+  #loader img{height:70px;opacity:.9;animation:logoPulse 1.4s ease infinite}
+  @keyframes logoPulse{0%,100%{opacity:.7;transform:scale(1)}50%{opacity:1;transform:scale(1.04)}}
+  .loader-ring{width:44px;height:44px;border:3px solid rgba(72,180,221,.2);border-top-color:var(--blue);border-radius:50%;animation:spin .8s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  /* TOPBAR */
+  #topbar{position:fixed;top:0;left:0;right:0;z-index:1010;height:var(--topbar-h);background:var(--dark);display:flex;align-items:center;padding:0 clamp(16px,4vw,60px);gap:20px;border-bottom:1px solid rgba(72,180,221,.12)}
+  #topbar span{color:rgba(255,255,255,.65);font-size:12px;display:flex;align-items:center;gap:6px}
+  #topbar i{color:var(--blue);font-size:11px}
+  #topbar a{color:var(--blue);transition:color var(--t)}
+  #topbar a:hover{color:#fff}
+  .topbar-sep{color:rgba(255,255,255,.2)}
+
+  /* NAVBAR */
+  #navbar{position:fixed;top:var(--topbar-h);left:0;right:0;z-index:1000;height:var(--nav-h);padding:0 clamp(16px,4vw,60px);display:flex;align-items:center;justify-content:space-between;background:#fff;border-bottom:1px solid rgba(15,23,113,.1);box-shadow:0 2px 16px rgba(15,23,113,.08);transition:height var(--t) var(--ease),box-shadow var(--t) var(--ease)}
+  #navbar.scrolled{height:62px;box-shadow:0 4px 24px rgba(15,23,113,.12)}
+  .nav-logo img{height:50px;transition:height var(--t) var(--ease)}
+  #navbar.scrolled .nav-logo img{height:42px}
+  .nav-links{display:flex;align-items:center;gap:4px}
+  .nav-links>a,.nav-dropdown>a{color:var(--navy);font-size:13px;font-weight:600;letter-spacing:.4px;text-transform:uppercase;padding:8px 13px;border-radius:8px;position:relative;transition:color var(--t),background var(--t);white-space:nowrap}
+  .nav-links>a::after{content:'';position:absolute;bottom:3px;left:50%;right:50%;height:2px;background:var(--blue);border-radius:2px;transition:left var(--t) var(--ease),right var(--t) var(--ease)}
+  .nav-links>a:hover,.nav-dropdown>a:hover{color:var(--mid);background:rgba(15,23,113,.06)}
+  .nav-links>a:hover::after{left:13px;right:13px}
+  .nav-cta{background:var(--blue)!important;color:#fff!important;padding:9px 20px!important;border-radius:50px!important;box-shadow:0 4px 18px rgba(72,180,221,.3);transition:background var(--t),box-shadow var(--t),transform var(--t)!important}
+  .nav-cta::after{display:none!important}
+  .nav-cta:hover{background:#6acce9!important;transform:translateY(-1px)}
+  .nav-dropdown{position:relative}
+  .nav-dropdown>a{cursor:pointer;display:flex;align-items:center;gap:5px}
+  .drop-icon{font-size:10px;transition:transform var(--t)}
+  .nav-dropdown:hover .drop-icon{transform:rotate(180deg)}
+  .dropdown-menu{position:absolute;top:calc(100% + 12px);left:50%;transform:translateX(-50%) translateY(8px);background:#fff;border-radius:14px;box-shadow:0 20px 60px rgba(15,23,113,.18);min-width:230px;opacity:0;visibility:hidden;transition:opacity var(--t),transform var(--t),visibility var(--t);overflow:hidden;border:1px solid rgba(15,23,113,.07)}
+  .nav-dropdown:hover .dropdown-menu{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+  .dropdown-menu a{display:flex;align-items:center;gap:10px;padding:13px 20px;color:var(--navy);font-size:13px;font-weight:600;border-bottom:1px solid #f0f3fa;transition:background var(--t),padding-left var(--t)}
+  .dropdown-menu a:last-child{border-bottom:none}
+  .dropdown-menu a i{color:var(--blue);font-size:10px}
+  .dropdown-menu a:hover{background:var(--gray);padding-left:28px}
+  .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px}
+  .hamburger span{display:block;width:25px;height:2px;background:var(--navy);border-radius:2px;transition:transform var(--t),opacity var(--t)}
+  .hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+  .hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+  .hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+  .mobile-menu{display:none;position:fixed;top:var(--nav-full);left:0;right:0;bottom:0;z-index:990;background:rgba(9,14,74,.99);flex-direction:column;overflow-y:auto;opacity:0;transform:translateX(100%);transition:opacity var(--t),transform var(--t)}
+  .mobile-menu.visible{display:flex}
+  .mobile-menu.open{opacity:1;transform:translateX(0)}
+  .mobile-menu a{color:rgba(255,255,255,.8);font-size:17px;font-weight:600;padding:18px clamp(20px,6vw,48px);border-bottom:1px solid rgba(255,255,255,.07);display:flex;align-items:center;gap:12px;transition:color var(--t),background var(--t)}
+  .mobile-menu a i{color:var(--blue);width:20px;text-align:center}
+  .mobile-menu a:hover{color:#fff;background:rgba(72,180,221,.08)}
+  .mobile-cta{background:var(--blue)!important;color:#fff!important;margin:20px clamp(20px,6vw,48px);border-radius:50px!important;justify-content:center}
+
+  /* PAGE BANNER */
+  .page-banner{background:linear-gradient(135deg,var(--dark) 0%,var(--navy) 60%,var(--mid) 100%);padding:64px clamp(16px,4vw,60px) 52px;text-align:center;position:relative;overflow:hidden}
+  .page-banner::before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(72,180,221,.12) 1px,transparent 1px);background-size:36px 36px}
+  .page-banner h1{font-size:clamp(1.6rem,4vw,2.8rem);font-weight:800;color:#fff;margin-bottom:10px;position:relative}
+  .page-banner p{color:rgba(255,255,255,.65);font-size:15px;position:relative}
+
+  /* PRODUCT GRID */
+  .products-wrap{background:var(--gray);padding:60px clamp(16px,4vw,60px)}
+  .prod-grid{max-width:1360px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+  .prod-card{background:#fff;border-radius:var(--radius);overflow:hidden;box-shadow:0 4px 16px rgba(15,23,113,.07);display:flex;flex-direction:column;transition:transform var(--t),box-shadow var(--t)}
+  .prod-card:hover{transform:translateY(-6px);box-shadow:0 18px 44px rgba(15,23,113,.14)}
+  .prod-card img{width:100%;height:200px;object-fit:cover}
+  .prod-card-body{padding:18px;flex:1;display:flex;flex-direction:column;gap:6px}
+  .prod-card h3{font-size:13.5px;font-weight:700;color:var(--navy);line-height:1.4}
+  .prod-cat{font-size:11px;color:var(--mid);font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+  .prod-link{display:inline-flex;align-items:center;gap:6px;margin-top:auto;padding-top:10px;font-size:12px;font-weight:700;color:var(--blue);transition:color var(--t)}
+  .prod-link:hover{color:var(--navy)}
+
+  /* FOOTER */
+  footer{background:var(--dark);padding:36px clamp(20px,5vw,60px);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:18px}
+  .ft-logo img{height:50px;opacity:.9}
+  .ft-copy{color:rgba(255,255,255,.38);font-size:12.5px}
+  .ft-copy a{color:var(--blue)}
+  .ft-credits img{height:38px;opacity:.65;transition:opacity var(--t)}
+  .ft-credits img:hover{opacity:1}
+
+  /* GO-UP */
+  #go-up{position:fixed;bottom:28px;right:28px;z-index:500;width:46px;height:46px;border-radius:50%;border:none;background:var(--navy);color:#fff;font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(15,23,113,.35);opacity:0;visibility:hidden;transform:translateY(14px);transition:opacity var(--t),visibility var(--t),transform var(--t),background var(--t)}
+  #go-up.show{opacity:1;visibility:visible;transform:translateY(0)}
+  #go-up:hover{background:var(--blue)}
+
+  /* RESPONSIVE */
+  @media(max-width:1100px){.prod-grid{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:768px){
+    :root{--nav-h:62px;--topbar-h:0px}
+    #topbar{display:none}
+    body{padding-top:var(--nav-h)}
+    #navbar{top:0}
+    .mobile-menu{top:var(--nav-h)}
+    .nav-links{display:none}
+    .hamburger{display:flex}
+    .prod-grid{grid-template-columns:repeat(2,1fr)}
+    footer{flex-direction:column;align-items:center;text-align:center}
+  }
+  @media(max-width:480px){.prod-grid{grid-template-columns:1fr}}
+
+  /* SEARCH */
+  .nav-search{display:flex;align-items:center;position:relative}
+  .search-btn{background:none;border:none;cursor:pointer;color:var(--navy);font-size:18px;padding:8px 10px;border-radius:8px;display:flex;align-items:center;transition:color var(--t),background var(--t)}
+  .search-btn:hover{color:var(--blue);background:rgba(15,23,113,.06)}
+  .search-box{display:flex;align-items:center;gap:6px;width:0;overflow:hidden;transition:width .38s var(--ease),opacity .38s var(--ease);opacity:0}
+  .search-box.open{width:min(240px,34vw);opacity:1}
+  .search-box input{flex:1;border:none;border-bottom:2px solid var(--blue);outline:none;font-family:'Open Sans',sans-serif;font-size:13.5px;color:var(--navy);background:transparent;padding:4px 0;min-width:0}
+  .search-box input::placeholder{color:rgba(15,23,113,.35)}
+  .search-close{background:none;border:none;cursor:pointer;color:var(--navy);font-size:13px;padding:4px 6px;opacity:.55;transition:opacity var(--t);flex-shrink:0;display:flex;align-items:center}
+  .search-close:hover{opacity:1}
+  .search-dropdown{position:absolute;top:calc(100% + 12px);right:0;width:310px;background:#fff;border-radius:14px;box-shadow:0 20px 60px rgba(15,23,113,.18);border:1px solid rgba(15,23,113,.07);overflow:hidden;max-height:380px;overflow-y:auto;opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity .25s var(--ease),transform .25s var(--ease),visibility .25s;z-index:200}
+  .search-dropdown.open{opacity:1;visibility:visible;transform:translateY(0)}
+  .search-result{display:flex;align-items:center;gap:10px;padding:13px 16px;color:var(--navy);font-size:13px;font-weight:600;border-bottom:1px solid #f0f3fa;transition:background var(--t);text-decoration:none}
+  .search-result:last-child{border-bottom:none}
+  .search-result:hover{background:var(--gray)}
+  .search-result i{color:var(--blue);font-size:10px;flex-shrink:0}
+  .search-no-result{padding:20px 16px;color:#aaa;font-size:13px;display:flex;align-items:center;gap:8px}
+  .search-no-result i{color:var(--blue)}
+  @media(max-width:768px){.nav-search{display:none}}
+  </style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <img src="logobranca.png" alt="PROKINETICS">
+  <div class="loader-ring"></div>
+</div>
+
+<!-- TOPBAR -->
+<div id="topbar">
+  <span><i class="fa fa-phone"></i>
+    <a href="tel:+551938714172">(19) 3871-4172</a>
+    <span class="topbar-sep">|</span>
+    <a href="tel:+551932992194">(19) 3299-2194</a>
+  </span>
+  <span><i class="fa fa-envelope"></i>
+    <a href="mailto:prokinetics@prokinetics.com.br">prokinetics@prokinetics.com.br</a>
+  </span>
+</div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">
+    <img src="images/logopro.png" alt="PROKINETICS Tecnologia Ortopédica">
+  </a>
+  <div class="nav-links">
+    <a href="index.html">Principal</a>
+    <div class="nav-dropdown">
+      <a>Produtos <i class="fa fa-angle-down drop-icon"></i></a>
+      <div class="dropdown-menu">
+        <a href="base6584.html?pag=proteses.asp"><i class="fa fa-circle-dot"></i>Componentes para Próteses</a>
+        <a href="basee23d.html?pag=orteses.asp"><i class="fa fa-circle-dot"></i>Componentes para Órteses</a>
+        <a href="base7e54.html?pag=materiais.asp"><i class="fa fa-circle-dot"></i>Materiais</a>
+      </div>
+    </div>
+    <a href="base530f.html?pag=quemsomos.asp">Quem Somos</a>
+    <a href="base402e.html?pag=privacidade.asp">Privacidade</a>
+    <a href="index.html#contato" class="nav-cta">Fale Conosco</a>
+  </div>
+  <div class="nav-search">
+    <button class="search-btn" id="searchBtn" aria-label="Pesquisar produto">
+      <i class="fa fa-magnifying-glass"></i>
+    </button>
+    <div class="search-box" id="searchBox">
+      <input type="text" id="searchInput" placeholder="Pesquisar produto..." autocomplete="off">
+      <button class="search-close" id="searchClose" aria-label="Fechar pesquisa"><i class="fa fa-xmark"></i></button>
+    </div>
+    <div class="search-dropdown" id="searchDropdown"></div>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MENU MOBILE -->
+<nav class="mobile-menu" id="mobileMenu" aria-label="Menu mobile">
+  <a href="index.html"><i class="fa fa-house"></i>Principal</a>
+  <a href="base6584.html?pag=proteses.asp"><i class="fa fa-circle-dot"></i>Componentes para Próteses</a>
+  <a href="basee23d.html?pag=orteses.asp"><i class="fa fa-circle-dot"></i>Componentes para Órteses</a>
+  <a href="base7e54.html?pag=materiais.asp"><i class="fa fa-circle-dot"></i>Materiais</a>
+  <a href="base530f.html?pag=quemsomos.asp"><i class="fa fa-building"></i>Quem Somos</a>
+  <a href="base402e.html?pag=privacidade.asp"><i class="fa fa-shield-halved"></i>Privacidade</a>
+  <a href="index.html#contato" class="mobile-cta"><i class="fa fa-envelope"></i>Fale Conosco</a>
+</nav>
+
+<!-- PAGE BANNER -->
+<div class="page-banner">
+  <h1>Componentes para Próteses</h1>
+  <p>Veja detalhes clicando nos produtos</p>
+</div>
+
+<!-- PRODUCTS -->
+<div class="products-wrap">
+  <div class="prod-grid">
+
+    <a class="prod-card" href="base0ee5.html?pag=prot01.asp" data-aos="fade-up">
+      <img src="images/protth01.png" alt="Pés para próteses modulares">
+      <div class="prod-card-body">
+        <h3>Pés para próteses modulares</h3>
+        <span class="prod-cat">Componentes para Próteses</span>
+        <span class="prod-link"><i class="fa fa-arrow-right"></i>Ver detalhes</span>
+      </div>
+    </a>
+
+    <a class="prod-card" href="base8c52.html?pag=prot02.asp" data-aos="fade-up" data-aos-delay="60">
+      <img src="images/protth02.png" alt="Adaptadores para próteses modulares">
+      <div class="prod-card-body">
+        <h3>Adaptadores para próteses modulares</h3>
+        <span class="prod-cat">Componentes para Próteses</span>
+        <span class="prod-link"><i class="fa fa-arrow-right"></i>Ver detalhes</span>
+      </div>
+    </a>
+
+    <a class="prod-card" href="base218e.html?pag=prot03.asp" data-aos="fade-up" data-aos-delay="120">
+      <img src="images/protth03.png" alt="Adaptadores para próteses modulares">
+      <div class="prod-card-body">
+        <h3>Adaptadores para próteses modulares</h3>
+        <span class="prod-cat">Componentes para Próteses</span>
+        <span class="prod-link"><i class="fa fa-arrow-right"></i>Ver detalhes</span>
+      </div>
+    </a>
+
+    <a class="prod-card" href="base4617.html?pag=prot04.asp" data-aos="fade-up" data-aos-delay="180">
+      <img src="images/protth04.png" alt="Articulações de joelho para próteses modulares">
+      <div class="prod-card-body">
+        <h3>Articulações de joelho para próteses modulares</h3>
+        <span class="prod-cat">Componentes para Próteses</span>
+        <span class="prod-link"><i class="fa fa-arrow-right"></i>Ver detalhes</span>
+      </div>
+    </a>
+
+    <a class="prod-card" href="base5d0d.html?pag=prot05.asp" data-aos="fade-up">
+      <img src="images/protth05.png" alt="Articulações de quadril para próteses modulares">
+      <div class="prod-card-body">
+        <h3>Articulações de quadril para próteses modulares</h3>
+        <span class="prod-cat">Componentes para Próteses</span>
+        <span class="prod-link"><i class="fa fa-arrow-right"></i>Ver detalhes</span>
+      </div>
+    </a>
+
+    <a class="prod-card" href="base6919.html?pag=prot06.asp" data-aos="fade-up" data-aos-delay="60">
+      <img src="images/protth06.png" alt="KIT TT: LITE LINER transtibial com joelheira e válvula">
+      <div class="prod-card-body">
+        <h3>KIT TT: LITE LINER transtibial com joelheira e válvula</h3>
+        <span class="prod-cat">Componentes para Próteses</span>
+        <span class="prod-link"><i class="fa fa-arrow-right"></i>Ver detalhes</span>
+      </div>
+    </a>
+
+    <a class="prod-card" href="baseb6d6.html?pag=prot08.asp" data-aos="fade-up" data-aos-delay="120">
+      <img src="images/protth08.png" alt="LITE LINER GEL transtibial - com conexão -">
+      <div class="prod-card-body">
+        <h3>LITE LINER GEL transtibial — com conexão</h3>
+        <span class="prod-cat">Componentes para Próteses</span>
+        <span class="prod-link"><i class="fa fa-arrow-right"></i>Ver detalhes</span>
+      </div>
+    </a>
+
+    <a class="prod-card" href="basefc99.html?pag=prot10.asp" data-aos="fade-up" data-aos-delay="180">
+      <img src="images/protth10.png" alt="SILICON LINER transtibial - com conexão -">
+      <div class="prod-card-body">
+        <h3>SILICON LINER transtibial — com conexão</h3>
+        <span class="prod-cat">Componentes para Próteses</span>
+        <span class="prod-link"><i class="fa fa-arrow-right"></i>Ver detalhes</span>
+      </div>
+    </a>
+
+    <a class="prod-card" href="base0ab1.html?pag=prot21.asp" data-aos="fade-up">
+      <img src="images/protth21.png" alt="KIT TF: LITE LINER transfemoral com anéis e válvula">
+      <div class="prod-card-body">
+        <h3>KIT TF: LITE LINER transfemoral com anéis e válvula</h3>
+        <span class="prod-cat">Componentes para Próteses</span>
+        <span class="prod-link"><i class="fa fa-arrow-right"></i>Ver detalhes</span>
+      </div>
+    </a>
+
+    <a class="prod-card" href="base1473.html?pag=prot20.asp" data-aos="fade-up" data-aos-delay="60">
+      <img src="images/protth20.png" alt="LITE LINER - TABELA DE MEDIDAS">
+      <div class="prod-card-body">
+        <h3>LITE LINER — TABELA DE MEDIDAS</h3>
+        <span class="prod-cat">Componentes para Próteses</span>
+        <span class="prod-link"><i class="fa fa-arrow-right"></i>Ver detalhes</span>
+      </div>
+    </a>
+
+    <a class="prod-card" href="base5759.html?pag=prot12.asp" data-aos="fade-up" data-aos-delay="120">
+      <img src="images/protth12.png" alt="LITE LINER GEL - transfemoral">
+      <div class="prod-card-body">
+        <h3>LITE LINER GEL — transfemoral</h3>
+        <span class="prod-cat">Componentes para Próteses</span>
+        <span class="prod-link"><i class="fa fa-arrow-right"></i>Ver detalhes</span>
+      </div>
+    </a>
+
+    <a class="prod-card" href="basede9e.html?pag=prot13.asp" data-aos="fade-up" data-aos-delay="180">
+      <img src="images/protth13.png" alt="Acessórios para próteses">
+      <div class="prod-card-body">
+        <h3>Acessórios para próteses</h3>
+        <span class="prod-cat">Componentes para Próteses</span>
+        <span class="prod-link"><i class="fa fa-arrow-right"></i>Ver detalhes</span>
+      </div>
+    </a>
+
+    <a class="prod-card" href="base565e.html?pag=prot14.asp" data-aos="fade-up">
+      <img src="images/protth14.png" alt='Adaptador modular "Shuttle Lock"'>
+      <div class="prod-card-body">
+        <h3>Adaptador modular "Shuttle Lock"</h3>
+        <span class="prod-cat">Componentes para Próteses</span>
+        <span class="prod-link"><i class="fa fa-arrow-right"></i>Ver detalhes</span>
+      </div>
+    </a>
+
+    <a class="prod-card" href="base696c.html?pag=prot16.asp" data-aos="fade-up" data-aos-delay="60">
+      <img src="images/protth16.png" alt="Meias e acessórios para coto com gel polímero">
+      <div class="prod-card-body">
+        <h3>Meias e acessórios para coto com gel polímero</h3>
+        <span class="prod-cat">Componentes para Próteses</span>
+        <span class="prod-link"><i class="fa fa-arrow-right"></i>Ver detalhes</span>
+      </div>
+    </a>
+
+    <p class="no-results"><i class="fa fa-magnifying-glass" style="font-size:2rem;margin-bottom:12px;display:block"></i>Nenhum produto encontrado para essa pesquisa.</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-logo"><img src="logobranca.png" alt="PROKINETICS"></div>
+  <div class="ft-copy">&copy; 2026 <strong style="color:rgba(255,255,255,.55)">PROKINETICS Tecnologia Ortopédica Ltda.</strong> — Todos os direitos reservados. &nbsp;|&nbsp; <a href="base402e.html?pag=privacidade.asp">Privacidade</a></div>
+  <div class="ft-credits"><a href="https://www.bbshop.com.br" target="_blank" rel="noopener"><img src="images/bbshop.png" alt="BBShop"></a></div>
+</footer>
+
+<button id="go-up" aria-label="Voltar ao topo"><i class="fa fa-chevron-up"></i></button>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+AOS.init({ duration: 680, easing: 'ease-out-cubic', once: true, offset: 55 });
+
+window.addEventListener('load', () => {
+  setTimeout(() => document.getElementById('loader').classList.add('hide'), 500);
+});
+
+const navbar = document.getElementById('navbar');
+const goUp   = document.getElementById('go-up');
+window.addEventListener('scroll', () => {
+  const y = window.scrollY;
+  navbar.classList.toggle('scrolled', y > 80);
+  goUp.classList.toggle('show', y > 500);
+}, { passive: true });
+
+const ham = document.getElementById('hamburger');
+const mob = document.getElementById('mobileMenu');
+ham.addEventListener('click', () => {
+  const isOpen = ham.classList.toggle('open');
+  mob.classList.add('visible');
+  requestAnimationFrame(() => mob.classList.toggle('open', isOpen));
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+});
+mob.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  ham.classList.remove('open');
+  mob.classList.remove('open');
+  setTimeout(() => mob.classList.remove('visible'), 320);
+  document.body.style.overflow = '';
+}));
+
+goUp.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+const PRODUCTS = [
+  {name:'Pés para próteses modulares',url:'base0ee5.html?pag=protth01.asp'},
+  {name:'Adaptadores para próteses modulares',url:'base8c52.html?pag=protth02.asp'},
+  {name:'Adaptadores para próteses modulares',url:'base218e.html?pag=protth03.asp'},
+  {name:'Articulações de joelho para próteses modulares',url:'base4617.html?pag=protth04.asp'},
+  {name:'Articulações de quadril para próteses modulares',url:'base5d0d.html?pag=protth05.asp'},
+  {name:'KIT TT: LITE LINER transtibial com joelheira e válvula',url:'base6919.html?pag=protth06.asp'},
+  {name:'LITE LINER GEL transtibial — com conexão',url:'baseb6d6.html?pag=protth08.asp'},
+  {name:'SILICON LINER transtibial — com conexão',url:'basefc99.html?pag=protth10.asp'},
+  {name:'KIT TF: LITE LINER transfemoral com anéis e válvula',url:'base0ab1.html?pag=protth21.asp'},
+  {name:'LITE LINER — TABELA DE MEDIDAS',url:'base1473.html?pag=protth20.asp'},
+  {name:'LITE LINER GEL — transfemoral',url:'base5759.html?pag=protth12.asp'},
+  {name:'Acessórios para próteses',url:'basede9e.html?pag=protth13.asp'},
+  {name:'Adaptador modular "Shuttle Lock"',url:'base565e.html?pag=protth14.asp'},
+  {name:'Meias e acessórios para coto com gel polímero',url:'base696c.html?pag=protth16.asp'}
+];
+
+const searchBtn   = document.getElementById('searchBtn');
+const searchBox   = document.getElementById('searchBox');
+const searchInput = document.getElementById('searchInput');
+const searchClose = document.getElementById('searchClose');
+const searchDrop  = document.getElementById('searchDropdown');
+
+function renderDropdown(q) {
+  q = q.trim();
+  if (!q) { searchDrop.classList.remove('open'); searchDrop.innerHTML = ''; return; }
+  const results = PRODUCTS.filter(p => p.name.toLowerCase().includes(q.toLowerCase()));
+  if (!results.length) {
+    searchDrop.innerHTML = '<div class="search-no-result"><i class="fa fa-circle-exclamation"></i>Nenhum produto encontrado</div>';
+  } else {
+    searchDrop.innerHTML = results.map(p =>
+      `<a class="search-result" href="${p.url}"><i class="fa fa-circle-dot"></i>${p.name}</a>`
+    ).join('');
+  }
+  searchDrop.classList.add('open');
+}
+
+function closeSearch() {
+  searchBox.classList.remove('open');
+  searchDrop.classList.remove('open');
+  searchInput.value = '';
+  searchDrop.innerHTML = '';
+}
+
+searchBtn.addEventListener('click', () => {
+  searchBox.classList.add('open');
+  setTimeout(() => searchInput.focus(), 80);
+});
+searchClose.addEventListener('click', closeSearch);
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && searchBox.classList.contains('open')) closeSearch();
+});
+searchInput.addEventListener('input', () => renderDropdown(searchInput.value));
+document.addEventListener('click', e => {
+  if (!e.target.closest('.nav-search')) closeSearch();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Política de Privacidade — PROKINETICS Tecnologia Ortopédica Ltda. Gerenciamento de Cookies e Dados conforme LGPD.">
+  <title>Política de Privacidade | PROKINETICS Tecnologia Ortopédica</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+  <link rel="shortcut icon" href="images/favicon.png">
+  <style>
+  :root{--navy:#0f1771;--blue:#48b4dd;--mid:#2C7CBF;--dark:#090e4a;--white:#fff;--gray:#f4f6fb;--text:#4a4a5a;--shadow:0 8px 40px rgba(15,23,113,.14);--radius:16px;--ease:cubic-bezier(.4,0,.2,1);--t:.32s;--topbar-h:36px;--nav-h:72px;--nav-full:calc(var(--topbar-h) + var(--nav-h))}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Open Sans',sans-serif;background:#fff;color:var(--text);overflow-x:hidden;padding-top:var(--nav-full)}
+  a{text-decoration:none;color:inherit}
+  img{max-width:100%;display:block}
+
+  #loader{position:fixed;inset:0;z-index:9999;background:var(--dark);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;transition:opacity .6s var(--ease),visibility .6s var(--ease)}
+  #loader.hide{opacity:0;visibility:hidden;pointer-events:none}
+  #loader img{height:70px;opacity:.9;animation:logoPulse 1.4s ease infinite}
+  @keyframes logoPulse{0%,100%{opacity:.7;transform:scale(1)}50%{opacity:1;transform:scale(1.04)}}
+  .loader-ring{width:44px;height:44px;border:3px solid rgba(72,180,221,.2);border-top-color:var(--blue);border-radius:50%;animation:spin .8s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  #topbar{position:fixed;top:0;left:0;right:0;z-index:1010;height:var(--topbar-h);background:var(--dark);display:flex;align-items:center;padding:0 clamp(16px,4vw,60px);gap:20px;border-bottom:1px solid rgba(72,180,221,.12)}
+  #topbar span{color:rgba(255,255,255,.65);font-size:12px;display:flex;align-items:center;gap:6px}
+  #topbar i{color:var(--blue);font-size:11px}
+  #topbar a{color:var(--blue);transition:color var(--t)}
+  #topbar a:hover{color:#fff}
+  .topbar-sep{color:rgba(255,255,255,.2)}
+
+  #navbar{position:fixed;top:var(--topbar-h);left:0;right:0;z-index:1000;height:var(--nav-h);padding:0 clamp(16px,4vw,60px);display:flex;align-items:center;justify-content:space-between;background:#fff;border-bottom:1px solid rgba(15,23,113,.1);box-shadow:0 2px 16px rgba(15,23,113,.08);transition:height var(--t) var(--ease),box-shadow var(--t) var(--ease)}
+  #navbar.scrolled{height:62px;box-shadow:0 4px 24px rgba(15,23,113,.12)}
+  .nav-logo img{height:50px;transition:height var(--t) var(--ease)}
+  #navbar.scrolled .nav-logo img{height:42px}
+  .nav-links{display:flex;align-items:center;gap:4px}
+  .nav-links>a,.nav-dropdown>a{color:var(--navy);font-size:13px;font-weight:600;letter-spacing:.4px;text-transform:uppercase;padding:8px 13px;border-radius:8px;position:relative;transition:color var(--t),background var(--t);white-space:nowrap}
+  .nav-links>a::after{content:'';position:absolute;bottom:3px;left:50%;right:50%;height:2px;background:var(--blue);border-radius:2px;transition:left var(--t) var(--ease),right var(--t) var(--ease)}
+  .nav-links>a:hover,.nav-dropdown>a:hover{color:var(--mid);background:rgba(15,23,113,.06)}
+  .nav-links>a:hover::after{left:13px;right:13px}
+  .nav-cta{background:var(--blue)!important;color:#fff!important;padding:9px 20px!important;border-radius:50px!important;box-shadow:0 4px 18px rgba(72,180,221,.3);transition:background var(--t),box-shadow var(--t),transform var(--t)!important}
+  .nav-cta::after{display:none!important}
+  .nav-cta:hover{background:#6acce9!important;transform:translateY(-1px)}
+  .nav-dropdown{position:relative}
+  .nav-dropdown>a{cursor:pointer;display:flex;align-items:center;gap:5px}
+  .drop-icon{font-size:10px;transition:transform var(--t)}
+  .nav-dropdown:hover .drop-icon{transform:rotate(180deg)}
+  .dropdown-menu{position:absolute;top:calc(100% + 12px);left:50%;transform:translateX(-50%) translateY(8px);background:#fff;border-radius:14px;box-shadow:0 20px 60px rgba(15,23,113,.18);min-width:230px;opacity:0;visibility:hidden;transition:opacity var(--t),transform var(--t),visibility var(--t);overflow:hidden;border:1px solid rgba(15,23,113,.07)}
+  .nav-dropdown:hover .dropdown-menu{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+  .dropdown-menu a{display:flex;align-items:center;gap:10px;padding:13px 20px;color:var(--navy);font-size:13px;font-weight:600;border-bottom:1px solid #f0f3fa;transition:background var(--t),padding-left var(--t)}
+  .dropdown-menu a:last-child{border-bottom:none}
+  .dropdown-menu a i{color:var(--blue);font-size:10px}
+  .dropdown-menu a:hover{background:var(--gray);padding-left:28px}
+  .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px}
+  .hamburger span{display:block;width:25px;height:2px;background:var(--navy);border-radius:2px;transition:transform var(--t),opacity var(--t)}
+  .hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+  .hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+  .hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+  .mobile-menu{display:none;position:fixed;top:var(--nav-full);left:0;right:0;bottom:0;z-index:990;background:rgba(9,14,74,.99);flex-direction:column;overflow-y:auto;opacity:0;transform:translateX(100%);transition:opacity var(--t),transform var(--t)}
+  .mobile-menu.visible{display:flex}
+  .mobile-menu.open{opacity:1;transform:translateX(0)}
+  .mobile-menu a{color:rgba(255,255,255,.8);font-size:17px;font-weight:600;padding:18px clamp(20px,6vw,48px);border-bottom:1px solid rgba(255,255,255,.07);display:flex;align-items:center;gap:12px;transition:color var(--t),background var(--t)}
+  .mobile-menu a i{color:var(--blue);width:20px;text-align:center}
+  .mobile-menu a:hover{color:#fff;background:rgba(72,180,221,.08)}
+  .mobile-cta{background:var(--blue)!important;color:#fff!important;margin:20px clamp(20px,6vw,48px);border-radius:50px!important;justify-content:center}
+
+  /* PAGE BANNER */
+  .page-banner{background:linear-gradient(135deg,var(--dark) 0%,var(--navy) 60%,var(--mid) 100%);padding:64px clamp(16px,4vw,60px) 52px;text-align:center;position:relative;overflow:hidden}
+  .page-banner::before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(72,180,221,.12) 1px,transparent 1px);background-size:36px 36px}
+  .page-banner h1{font-size:clamp(1.6rem,4vw,2.8rem);font-weight:800;color:#fff;margin-bottom:10px;position:relative}
+  .page-banner p{color:rgba(255,255,255,.65);font-size:15px;position:relative}
+
+  /* PRIVACY CONTENT */
+  .privacy-section{max-width:860px;margin:0 auto;padding:72px clamp(16px,4vw,60px)}
+  .privacy-section h2{font-size:1.6rem;font-weight:800;color:var(--navy);margin-bottom:24px}
+  .privacy-section h4{font-size:1rem;font-weight:700;color:var(--navy);margin:28px 0 10px}
+  .privacy-section h5{font-size:.95rem;font-weight:700;color:var(--mid);margin:20px 0 8px}
+  .privacy-section h6{font-size:.9rem;font-weight:700;color:var(--navy);margin:16px 0 6px}
+  .privacy-section p{font-size:14.5px;line-height:1.85;color:var(--text);margin-bottom:12px}
+  .privacy-section a{color:var(--blue)}
+  .privacy-section a:hover{color:var(--navy)}
+
+  /* FOOTER */
+  footer{background:var(--dark);padding:36px clamp(20px,5vw,60px);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:18px}
+  .ft-logo img{height:50px;opacity:.9}
+  .ft-copy{color:rgba(255,255,255,.38);font-size:12.5px}
+  .ft-copy a{color:var(--blue)}
+  .ft-credits img{height:38px;opacity:.65;transition:opacity var(--t)}
+  .ft-credits img:hover{opacity:1}
+
+  #go-up{position:fixed;bottom:28px;right:28px;z-index:500;width:46px;height:46px;border-radius:50%;border:none;background:var(--navy);color:#fff;font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(15,23,113,.35);opacity:0;visibility:hidden;transform:translateY(14px);transition:opacity var(--t),visibility var(--t),transform var(--t),background var(--t)}
+  #go-up.show{opacity:1;visibility:visible;transform:translateY(0)}
+  #go-up:hover{background:var(--blue)}
+
+  @media(max-width:768px){
+    :root{--nav-h:62px;--topbar-h:0px}
+    #topbar{display:none}
+    body{padding-top:var(--nav-h)}
+    #navbar{top:0}
+    .mobile-menu{top:var(--nav-h)}
+    .nav-links{display:none}
+    .hamburger{display:flex}
+    footer{flex-direction:column;align-items:center;text-align:center}
+  }
+
+  /* SEARCH */
+  .nav-search{display:flex;align-items:center;position:relative}
+  .search-btn{background:none;border:none;cursor:pointer;color:var(--navy);font-size:18px;padding:8px 10px;border-radius:8px;display:flex;align-items:center;transition:color var(--t),background var(--t)}
+  .search-btn:hover{color:var(--blue);background:rgba(15,23,113,.06)}
+  .search-box{display:flex;align-items:center;gap:6px;width:0;overflow:hidden;transition:width .38s var(--ease),opacity .38s var(--ease);opacity:0}
+  .search-box.open{width:min(240px,34vw);opacity:1}
+  .search-box input{flex:1;border:none;border-bottom:2px solid var(--blue);outline:none;font-family:'Open Sans',sans-serif;font-size:13.5px;color:var(--navy);background:transparent;padding:4px 0;min-width:0}
+  .search-box input::placeholder{color:rgba(15,23,113,.35)}
+  .search-close{background:none;border:none;cursor:pointer;color:var(--navy);font-size:13px;padding:4px 6px;opacity:.55;transition:opacity var(--t);flex-shrink:0;display:flex;align-items:center}
+  .search-close:hover{opacity:1}
+  .search-dropdown{position:absolute;top:calc(100% + 12px);right:0;width:310px;background:#fff;border-radius:14px;box-shadow:0 20px 60px rgba(15,23,113,.18);border:1px solid rgba(15,23,113,.07);overflow:hidden;max-height:380px;overflow-y:auto;opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity .25s var(--ease),transform .25s var(--ease),visibility .25s;z-index:200}
+  .search-dropdown.open{opacity:1;visibility:visible;transform:translateY(0)}
+  .search-result{display:flex;align-items:center;gap:10px;padding:13px 16px;color:var(--navy);font-size:13px;font-weight:600;border-bottom:1px solid #f0f3fa;transition:background var(--t);text-decoration:none}
+  .search-result:last-child{border-bottom:none}
+  .search-result:hover{background:var(--gray)}
+  .search-result i{color:var(--blue);font-size:10px;flex-shrink:0}
+  .search-no-result{padding:20px 16px;color:#aaa;font-size:13px;display:flex;align-items:center;gap:8px}
+  .search-no-result i{color:var(--blue)}
+  @media(max-width:768px){.nav-search{display:none}}
+  </style>
+</head>
+<body>
+
+<div id="loader">
+  <img src="logobranca.png" alt="PROKINETICS">
+  <div class="loader-ring"></div>
+</div>
+
+<div id="topbar">
+  <span><i class="fa fa-phone"></i>
+    <a href="tel:+551938714172">(19) 3871-4172</a>
+    <span class="topbar-sep">|</span>
+    <a href="tel:+551932992194">(19) 3299-2194</a>
+  </span>
+  <span><i class="fa fa-envelope"></i>
+    <a href="mailto:prokinetics@prokinetics.com.br">prokinetics@prokinetics.com.br</a>
+  </span>
+</div>
+
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">
+    <img src="images/logopro.png" alt="PROKINETICS Tecnologia Ortopédica">
+  </a>
+  <div class="nav-links">
+    <a href="index.html">Principal</a>
+    <div class="nav-dropdown">
+      <a>Produtos <i class="fa fa-angle-down drop-icon"></i></a>
+      <div class="dropdown-menu">
+        <a href="base6584.html?pag=proteses.asp"><i class="fa fa-circle-dot"></i>Componentes para Próteses</a>
+        <a href="basee23d.html?pag=orteses.asp"><i class="fa fa-circle-dot"></i>Componentes para Órteses</a>
+        <a href="base7e54.html?pag=materiais.asp"><i class="fa fa-circle-dot"></i>Materiais</a>
+      </div>
+    </div>
+    <a href="base530f.html?pag=quemsomos.asp">Quem Somos</a>
+    <a href="base402e.html?pag=privacidade.asp">Privacidade</a>
+    <a href="index.html#contato" class="nav-cta">Fale Conosco</a>
+  </div>
+  <div class="nav-search">
+    <button class="search-btn" id="searchBtn" aria-label="Pesquisar produto">
+      <i class="fa fa-magnifying-glass"></i>
+    </button>
+    <div class="search-box" id="searchBox">
+      <input type="text" id="searchInput" placeholder="Pesquisar produto..." autocomplete="off">
+      <button class="search-close" id="searchClose" aria-label="Fechar pesquisa"><i class="fa fa-xmark"></i></button>
+    </div>
+    <div class="search-dropdown" id="searchDropdown"></div>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<nav class="mobile-menu" id="mobileMenu" aria-label="Menu mobile">
+  <a href="index.html"><i class="fa fa-house"></i>Principal</a>
+  <a href="base6584.html?pag=proteses.asp"><i class="fa fa-circle-dot"></i>Componentes para Próteses</a>
+  <a href="basee23d.html?pag=orteses.asp"><i class="fa fa-circle-dot"></i>Componentes para Órteses</a>
+  <a href="base7e54.html?pag=materiais.asp"><i class="fa fa-circle-dot"></i>Materiais</a>
+  <a href="base530f.html?pag=quemsomos.asp"><i class="fa fa-building"></i>Quem Somos</a>
+  <a href="base402e.html?pag=privacidade.asp"><i class="fa fa-shield-halved"></i>Privacidade</a>
+  <a href="index.html#contato" class="mobile-cta"><i class="fa fa-envelope"></i>Fale Conosco</a>
+</nav>
+
+<!-- PAGE BANNER -->
+<div class="page-banner">
+  <h1>Política de Privacidade</h1>
+  <p>Gerenciamento de Cookies e Dados — LGPD (Lei 13.709/2018)</p>
+</div>
+
+<!-- PRIVACY CONTENT -->
+<div class="privacy-section" data-aos="fade-up">
+  <h2>Privacidade</h2>
+
+  <p>Este site é mantido e operado por <strong>PROKINETICS Tecnologia Ortopédica Ltda.</strong></p>
+
+  <p>A política de privacidade e termos de uso se aplicam a todos os usuários que acessam nosso website. A privacidade dos visitantes do nosso site é muito importante para nós, e estamos comprometidos em protegê-la. Coletamos e utilizamos alguns dados pessoais pertencentes àqueles usuários que utilizam este website. Agimos na qualidade de controlador desses dados de acordo com a legislação federal e com as normas internacionais de segurança da informação.</p>
+
+  <h4>Introdução</h4>
+  <p>Disponibilizamos esta política de privacidade, que contém informações importantes sobre:<br>
+  — Quem deve utilizar este website<br>
+  — Quais dados coletamos e o que fazemos com eles<br>
+  — Seus direitos em relação aos seus dados pessoais<br>
+  — Como entrar em contato conosco</p>
+
+  <p>Esta política explica o que faremos com suas informações pessoais e visa esclarecer a todos os(as) interessados(as) sobre os tipos de dados que coletamos, os motivos da coleta e a forma como os usuários deste site podem gerenciar ou excluir suas informações pessoais.</p>
+
+  <p>Os presentes termos foram elaborados em conformidade com a Lei Geral de Proteção de Dados pessoais (Lei 13.709/18), o Marco Civil da Internet (Lei 12.965/14) e o Regulamento da EU (n.2016/679).</p>
+
+  <h4>1 – Quem deve utilizar este site</h4>
+  <p>Este site pode ser utilizado por adultos, adolescentes e crianças.</p>
+
+  <h4>2 – Dados que coletamos e motivos da coleta</h4>
+  <p>Nosso site coleta e utiliza alguns dados pessoais dos visitantes e usuários da seguinte forma:</p>
+
+  <h5>2.1) Dados pessoais fornecidos expressamente pelo usuário</h5>
+  <p>Não coletamos dados pessoais fornecidos pelos usuários.</p>
+
+  <h5>2.2) Dados pessoais comportamentais</h5>
+  <p>Quando o usuário visita o nosso website, é inserido um "cookie" em seu navegador por meio do software Google Analytics, para identificar quantas vezes visitou o nosso endereço eletrônico, quanto tempo permaneceu em nosso website, desde que cidade nos acessou e quais páginas leu e recomendou, entre outros.</p>
+
+  <p>Coletamos os seguintes dados pessoais através de cookies e outras formas que os usuários geram e/ou nos fornecem ao utilizar nosso site:<br>
+  — Endereço IP;<br>
+  — Dados de geolocalização e localização geográfica;<br>
+  — Palavras-chave e termos buscados;<br>
+  — Fonte de referência, tipo e versão de navegador;<br>
+  — Páginas visitadas, tempo de duração de cada visita e histórico de visitas;<br>
+  — Dados contextuais baseados na experiência de navegação.</p>
+
+  <p>A coleta destes dados ocorre nos seguintes momentos:<br>
+  — Quando o usuário visita uma de nossas páginas;<br>
+  — Quando o usuário entra em contato por e-mail, telefone ou formulário;<br>
+  — Quando realiza algum tipo de interação com nosso site.</p>
+
+  <p>Os dados gerados e/ou fornecidos por nossos usuários são coletados com as seguintes finalidades:<br>
+  — Para garantir a segurança do website;<br>
+  — Para detectar comportamento fora do habitual e brechas de segurança;<br>
+  — Para gerar estatísticas de visitação e de interação com nosso site;<br>
+  — Para otimizar e aprimorar a navegação, usabilidade e layout do site;<br>
+  — Para cumprir com nossas obrigações legais e regulatórias.</p>
+
+  <h5>2.3) Dados pessoais sensíveis</h5>
+  <p>Não coletamos dados sensíveis de nossos usuários, assim entendidos aqueles definidos nos arts. 11 e seguintes da Lei Geral da Proteção de Dados Pessoais.</p>
+
+  <h5>2.4) Dados de crianças e adolescentes</h5>
+  <p>Este site não coleta dados de crianças e adolescentes.</p>
+
+  <h5>2.5) Cookies</h5>
+  <p>Cookies são pequenos arquivos de texto baixados automaticamente em seu dispositivo quando você acessa e navega por um site. Eles servem para que seja possível identificar dispositivos, atividades e preferências de usuários.</p>
+
+  <p>Os cookies não permitem que qualquer arquivo ou informação sejam extraídos do disco rígido do usuário.</p>
+
+  <h6>a) Cookies do Site</h6>
+  <p>Os cookies do site são aqueles enviados ao computador ou dispositivo do usuário, exclusivamente pelo website. As informações coletadas por meio destes cookies são utilizadas para melhorar e personalizar a experiência do usuário.</p>
+
+  <h6>b) Cookies de Terceiros</h6>
+  <p>Alguns de nossos parceiros podem configurar cookies nos dispositivos dos usuários que acessam nosso site. O usuário poderá obter mais informações sobre os cookies de terceiros acessando:</p>
+  <p>Google Analytics: <a href="https://developers.google.com/analytics/devguides/collection/gajs/cookie-usage" target="_blank" rel="noopener">developers.google.com/analytics/devguides/collection/gajs/cookie-usage</a></p>
+
+  <h6>c) Gestão de Cookies</h6>
+  <p>O usuário poderá se opor ao registro de cookies pelo site, bastando que desative esta opção no seu próprio navegador. Mais informações nos principais navegadores:</p>
+  <p>
+    <a href="https://support.microsoft.com/pt-br/topic/excluir-e-gerenciar-cookies-168dab11-0753-043d-7c16-ede5947fc64d" target="_blank" rel="noopener">Internet Explorer</a> &nbsp;|&nbsp;
+    <a href="https://support.apple.com/pt-br/guide/safari/sfri11471/mac" target="_blank" rel="noopener">Safari</a> &nbsp;|&nbsp;
+    <a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener">Google Chrome</a> &nbsp;|&nbsp;
+    <a href="https://support.mozilla.org/pt-BR/kb/cookies-informacoes-sites-armazenam-no-computador" target="_blank" rel="noopener">Mozilla Firefox</a> &nbsp;|&nbsp;
+    <a href="https://www.opera.com/pt/secure-private-browser" target="_blank" rel="noopener">Opera</a>
+  </p>
+
+  <p>A desativação dos cookies pode afetar a disponibilidade de algumas ferramentas e funcionalidades do site, comprometendo seu correto funcionamento.</p>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-logo"><img src="logobranca.png" alt="PROKINETICS"></div>
+  <div class="ft-copy">&copy; 2026 <strong style="color:rgba(255,255,255,.55)">PROKINETICS Tecnologia Ortopédica Ltda.</strong> — Todos os direitos reservados. &nbsp;|&nbsp; <a href="base402e.html?pag=privacidade.asp">Privacidade</a></div>
+  <div class="ft-credits"><a href="https://www.bbshop.com.br" target="_blank" rel="noopener"><img src="images/bbshop.png" alt="BBShop"></a></div>
+</footer>
+
+<button id="go-up" aria-label="Voltar ao topo"><i class="fa fa-chevron-up"></i></button>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+AOS.init({ duration: 680, easing: 'ease-out-cubic', once: true, offset: 55 });
+window.addEventListener('load', () => {
+  setTimeout(() => document.getElementById('loader').classList.add('hide'), 500);
+});
+const navbar = document.getElementById('navbar');
+const goUp   = document.getElementById('go-up');
+window.addEventListener('scroll', () => {
+  const y = window.scrollY;
+  navbar.classList.toggle('scrolled', y > 80);
+  goUp.classList.toggle('show', y > 500);
+}, { passive: true });
+const ham = document.getElementById('hamburger');
+const mob = document.getElementById('mobileMenu');
+ham.addEventListener('click', () => {
+  const isOpen = ham.classList.toggle('open');
+  mob.classList.add('visible');
+  requestAnimationFrame(() => mob.classList.toggle('open', isOpen));
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+});
+mob.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  ham.classList.remove('open');
+  mob.classList.remove('open');
+  setTimeout(() => mob.classList.remove('visible'), 320);
+  document.body.style.overflow = '';
+}));
+goUp.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+const PRODUCTS = [
+  {name:'Pés para próteses modulares',url:'base0ee5.html?pag=protth01.asp'},
+  {name:'Adaptadores para próteses modulares',url:'base8c52.html?pag=protth02.asp'},
+  {name:'Adaptadores para próteses modulares',url:'base218e.html?pag=protth03.asp'},
+  {name:'Articulações de joelho para próteses modulares',url:'base4617.html?pag=protth04.asp'},
+  {name:'Articulações de quadril para próteses modulares',url:'base5d0d.html?pag=protth05.asp'},
+  {name:'KIT TT: LITE LINER transtibial com joelheira e válvula',url:'base6919.html?pag=protth06.asp'},
+  {name:'LITE LINER GEL transtibial — com conexão',url:'baseb6d6.html?pag=protth08.asp'},
+  {name:'SILICON LINER transtibial — com conexão',url:'basefc99.html?pag=protth10.asp'},
+  {name:'KIT TF: LITE LINER transfemoral com anéis e válvula',url:'base0ab1.html?pag=protth21.asp'},
+  {name:'LITE LINER — TABELA DE MEDIDAS',url:'base1473.html?pag=protth20.asp'},
+  {name:'LITE LINER GEL — transfemoral',url:'base5759.html?pag=protth12.asp'},
+  {name:'Acessórios para próteses',url:'basede9e.html?pag=protth13.asp'},
+  {name:'Adaptador modular "Shuttle Lock"',url:'base565e.html?pag=protth14.asp'},
+  {name:'Meias e acessórios para coto com gel polímero',url:'base696c.html?pag=protth16.asp'},
+  {name:'Articulações de joelho para órteses — trava anel',url:'base7e67.html?pag=ort02.asp'},
+  {name:'Articulações de joelho para órteses — trava suíça',url:'base070c.html?pag=ort03.asp'},
+  {name:'Articulações de joelho para órteses — trava suíça modular',url:'base42dd.html?pag=ort33.asp'},
+  {name:'Articulações de joelho para órteses — com trava e ajuste',url:'base9388.html?pag=ort05.asp'},
+  {name:'Articulações de joelho para órteses — movimento livre',url:'base0395.html?pag=ort06.asp'},
+  {name:'Articulações de quadril para órteses',url:'base6999.html?pag=ort08.asp'},
+  {name:'Articulações de tornozelo para órteses',url:'base8f72.html?pag=ort09.asp'},
+  {name:'Estribos para órteses',url:'base711d.html?pag=ort10.asp'},
+  {name:'Articulações flexíveis TAMARACK',url:'baseeef5.html?pag=ort12.asp'},
+  {name:'Articulações flexíveis TAMARACK — exemplos',url:'base10c5.html?pag=ort13.asp'},
+  {name:'Artic. tornozelo "Camber Axis", "Oklahoma" e "FC2"',url:'base2467.html?pag=ort14.asp'},
+  {name:'Articulação MONODOS para órteses',url:'basefa6b.html?pag=ort15.asp'},
+  {name:'Órteses BECKER de controle da fase de apoio',url:'baseb581.html?pag=ort31.asp'},
+  {name:'Órtese BECKER PreStride®',url:'base9bab.html?pag=ort18.asp'},
+  {name:'Órtese BECKER Full Stride®',url:'base4998.html?pag=ort19.asp'},
+  {name:'Órtese BECKER Safety Stride®',url:'base54f8.html?pag=ort20.asp'},
+  {name:'Articulação de joelho policêntrica ULTRA G®',url:'base68d6.html?pag=ort24.asp'},
+  {name:'Órtese BECKER "Torsion Splint"',url:'base164a.html?pag=ort25.asp'},
+  {name:'Órtese de reciprocação Walkabout®',url:'base0e0d.html?pag=ort26.asp'},
+  {name:'Reforços de carbono COMPCORE',url:'base1308.html?pag=ort29.asp'},
+  {name:'Revestimento anti atrito ShearBan®',url:'base53e5.html?pag=ort30.asp'},
+  {name:'Folha de PVA / Cone de PVA',url:'basef16b.html?pag=mat01.asp'},
+  {name:'Malhas tubulares',url:'base3224.html?pag=mat02.asp'},
+  {name:'Malhas tubulares coloridas',url:'base644b.html?pag=mat03.asp'},
+  {name:'Malhas tubulares de Fibra e Híbridas',url:'base9405.html?pag=mat04.asp'},
+  {name:'Fita e Tecidos de Fibra de Vidro',url:'based3c2.html?pag=mat05.asp'},
+  {name:'Placas de PLASTAZOTE e EVA',url:'base86d8.html?pag=mat06.asp'},
+  {name:'Placa de polipropileno',url:'based197.html?pag=mat07.asp'},
+  {name:'Placas Rígidas e Flexíveis',url:'base68df.html?pag=mat08.asp'},
+  {name:'Folha Transfer para coloração de polipropileno',url:'baseaa2d.html?pag=mat09.asp'},
+  {name:'Folha Transfer para coloração de polipropileno',url:'base03a0.html?pag=mat10.asp'},
+  {name:'Ferramentas para a ortopedia técnica',url:'base035e.html?pag=mat13.asp'},
+  {name:'Estação de termomoldagem VACUPRESS',url:'baseb5b9.html?pag=mat15.asp'}
+];
+
+const searchBtn   = document.getElementById('searchBtn');
+const searchBox   = document.getElementById('searchBox');
+const searchInput = document.getElementById('searchInput');
+const searchClose = document.getElementById('searchClose');
+const searchDrop  = document.getElementById('searchDropdown');
+
+function renderDropdown(q) {
+  q = q.trim();
+  if (!q) { searchDrop.classList.remove('open'); searchDrop.innerHTML = ''; return; }
+  const results = PRODUCTS.filter(p => p.name.toLowerCase().includes(q.toLowerCase()));
+  if (!results.length) {
+    searchDrop.innerHTML = '<div class="search-no-result"><i class="fa fa-circle-exclamation"></i>Nenhum produto encontrado</div>';
+  } else {
+    searchDrop.innerHTML = results.map(p =>
+      `<a class="search-result" href="${p.url}"><i class="fa fa-circle-dot"></i>${p.name}</a>`
+    ).join('');
+  }
+  searchDrop.classList.add('open');
+}
+
+function closeSearch() {
+  searchBox.classList.remove('open');
+  searchDrop.classList.remove('open');
+  searchInput.value = '';
+  searchDrop.innerHTML = '';
+}
+
+searchBtn.addEventListener('click', () => {
+  searchBox.classList.add('open');
+  setTimeout(() => searchInput.focus(), 80);
+});
+searchClose.addEventListener('click', closeSearch);
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && searchBox.classList.contains('open')) closeSearch();
+});
+searchInput.addEventListener('input', () => renderDropdown(searchInput.value));
+document.addEventListener('click', e => {
+  if (!e.target.closest('.nav-search')) closeSearch();
+});
+</script>
+</body>
+</html>
