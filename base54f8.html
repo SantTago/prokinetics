@@ -71,6 +71,20 @@ img{max-width:100%;height:auto;display:block}
 .product-img img{width:100%;object-fit:contain;background:var(--gray);padding:12px}
 .table-img{margin:28px 0}
 .table-img img{border-radius:10px;box-shadow:0 2px 12px rgba(15,23,113,.07)}
+.video-link{display:block;position:relative;border-radius:12px;overflow:hidden;margin-top:32px;box-shadow:0 8px 36px rgba(15,23,113,.12);aspect-ratio:16/9;cursor:pointer}
+.video-link img{width:100%;height:100%;object-fit:cover;margin-bottom:0}
+.video-link .play-btn{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:rgba(9,14,74,.45);transition:background var(--t)}
+.video-link:hover .play-btn{background:rgba(9,14,74,.62)}
+.play-btn .play-icon{width:72px;height:72px;border-radius:50%;background:#ff0000;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(0,0,0,.4);transition:transform var(--t)}
+.video-link:hover .play-icon{transform:scale(1.1)}
+.play-btn .play-icon i{color:#fff;font-size:1.8rem;margin-left:5px}
+.play-btn span{color:#fff;font-size:.95rem;font-weight:700;letter-spacing:.02em;text-shadow:0 1px 4px rgba(0,0,0,.5)}
+.vid-modal{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:3000;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:opacity .3s var(--ease),visibility .3s}
+.vid-modal.open{opacity:1;visibility:visible}
+.vid-modal-inner{position:relative;width:min(900px,94vw);aspect-ratio:16/9}
+.vid-modal-inner iframe{width:100%;height:100%;border:0;border-radius:10px}
+.vid-close{position:absolute;top:-42px;right:0;background:none;border:none;color:#fff;font-size:1.7rem;cursor:pointer;opacity:.75;transition:opacity var(--t);line-height:1}
+.vid-close:hover{opacity:1}
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin:20px 0}
 .two-col h3{font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:10px}
 .two-col ul{list-style:none;display:flex;flex-direction:column;gap:5px}
@@ -190,7 +204,29 @@ footer .ft-logo img{height:38px;width:auto;opacity:.92}
   <div class="table-img">
     <img src="images/tabort20.png" alt="Tabela Safety Stride®">
   </div>
+  <div class="video-link" id="vidThumb1" role="button" tabindex="0" aria-label="Reproduzir vídeo 1">
+    <img src="https://img.youtube.com/vi/Fl5uT0-hJGo/maxresdefault.jpg" onerror="this.onerror=null;this.src=this.src.replace('maxresdefault','hqdefault')" alt="Órtese BECKER Safety Stride® — vídeo 1">
+    <div class="play-btn">
+      <div class="play-icon"><i class="fa fa-play"></i></div>
+      <span>Reproduzir vídeo</span>
+    </div>
+  </div>
+  <div class="video-link" id="vidThumb2" role="button" tabindex="0" aria-label="Reproduzir vídeo 2" style="margin-top:24px">
+    <img src="https://img.youtube.com/vi/HKIQsQ-EnT8/maxresdefault.jpg" onerror="this.onerror=null;this.src=this.src.replace('maxresdefault','hqdefault')" alt="Órtese BECKER Safety Stride® — vídeo 2">
+    <div class="play-btn">
+      <div class="play-icon"><i class="fa fa-play"></i></div>
+      <span>Reproduzir vídeo</span>
+    </div>
+  </div>
 </section>
+
+<div class="vid-modal" id="vidModal">
+  <div class="vid-modal-inner">
+    <button class="vid-close" id="vidClose" aria-label="Fechar"><i class="fa fa-xmark"></i></button>
+    <iframe id="vidIframe" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  </div>
+</div>
+
 <footer>
   <div class="ft-logo"><img src="logobranca.png" alt="PROKINETICS"></div>
   <div class="ft-copy">&copy; 2026 PROKINETICS Tecnologia Ortopédica Ltda. Todos os direitos reservados.</div>
@@ -259,6 +295,14 @@ const inp=document.getElementById('searchInput'),drop=document.getElementById('s
 function renderDropdown(q){const r=PRODUCTS.filter(p=>p.name.toLowerCase().includes(q.toLowerCase()));drop.innerHTML=r.length?r.map(p=>`<a href="${p.url}">${p.name}</a>`).join(''):'<span style="padding:10px 14px;display:block;font-size:.85rem;color:#aab">Nenhum resultado</span>';drop.classList.toggle('open',q.length>0)}
 inp.addEventListener('input',e=>renderDropdown(e.target.value));
 document.addEventListener('click',e=>{if(!e.target.closest('.nav-search')){drop.classList.remove('open')}});
+const vidModal=document.getElementById('vidModal'),vidIframe=document.getElementById('vidIframe'),vidClose=document.getElementById('vidClose');
+const VIDS={vidThumb1:'https://www.youtube.com/embed/Fl5uT0-hJGo?autoplay=1',vidThumb2:'https://www.youtube.com/embed/HKIQsQ-EnT8?autoplay=1'};
+function openVid(src){vidIframe.src=src;vidModal.classList.add('open');document.body.style.overflow='hidden'}
+function closeVid(){vidIframe.src='';vidModal.classList.remove('open');document.body.style.overflow=''}
+Object.entries(VIDS).forEach(([id,src])=>{const el=document.getElementById(id);el.addEventListener('click',()=>openVid(src));el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' ')openVid(src)})});
+vidClose.addEventListener('click',closeVid);
+vidModal.addEventListener('click',e=>{if(e.target===vidModal)closeVid()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&vidModal.classList.contains('open'))closeVid()});
 </script>
 </body>
 </html>
